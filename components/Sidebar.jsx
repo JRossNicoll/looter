@@ -334,7 +334,7 @@ export default function Sidebar({
           {/* Social Links */}
           <div className="flex items-center gap-1 md:gap-1.5">
             <a
-              href="https://x.com/LootChat_SOL" // Updated X link to LootChat_SOL
+              href="https://x.com/LootChat_SOL"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
@@ -373,6 +373,10 @@ export default function Sidebar({
                 className="h-4 w-auto opacity-90 hover:opacity-100 transition-opacity"
               />
             </div>
+          </div>
+
+          <div className="mt-1.5 text-[9px] text-zinc-600 font-mono break-all text-center px-1">
+            CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump
           </div>
         </div>
       </motion.aside>
