@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
-import { Clock, TrendingUp, X, Ticket, Sparkles } from "lucide-react"
+import { Clock, TrendingUp, X, Ticket, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
@@ -45,13 +45,13 @@ export default function HourlyGiveaway() {
 
   return (
     <>
-      <div className="mb-2 rounded-lg border border-[#F3BA2F]/20 bg-gradient-to-br from-[#F3BA2F]/25 to-[#F3BA2F]/15 p-2.5">
+      <div className="mb-2 rounded-lg border border-[#9333EA]/20 bg-gradient-to-br from-[#9333EA]/25 to-[#9333EA]/15 p-2.5">
         {/* Header */}
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F3BA2F]/20">
-            <Clock className="h-3 w-3 text-[#F3BA2F]" />
+          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#9333EA]/20">
+            <Clock className="h-3 w-3 text-[#9333EA]" />
           </div>
-          <div className="text-[10px] font-semibold text-[#F3BA2F] uppercase tracking-wider">Hourly Giveaway</div>
+          <div className="text-[10px] font-semibold text-[#9333EA] uppercase tracking-wider">Hourly Giveaway</div>
         </div>
 
         {/* Timer Display */}
@@ -70,7 +70,7 @@ export default function HourlyGiveaway() {
               </motion.div>
               <div className="text-[8px] text-zinc-500 uppercase">Min</div>
             </div>
-            <div className="text-lg font-bold text-[#F3BA2F] pb-3">:</div>
+            <div className="text-lg font-bold text-[#9333EA] pb-3">:</div>
             <div className="flex flex-col items-center">
               <motion.div
                 key={timeLeft.seconds}
@@ -95,7 +95,7 @@ export default function HourlyGiveaway() {
               initial={{ scale: 1.05 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="text-base font-bold text-[#F3BA2F] font-mono"
+              className="text-base font-bold text-[#9333EA] font-mono"
             >
               {formatValue(giveawayValue)}
             </motion.div>
@@ -106,7 +106,7 @@ export default function HourlyGiveaway() {
         {/* Progress Bar */}
         <div className="mb-2 h-1 rounded-full bg-black/30 overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#F3BA2F] to-green-400"
+            className="h-full bg-gradient-to-r from-[#9333EA] to-green-400"
             initial={{ width: "0%" }}
             animate={{
               width: `${((59 - timeLeft.minutes) / 59) * 100}%`,
@@ -117,7 +117,7 @@ export default function HourlyGiveaway() {
 
         <button
           onClick={() => setShowModal(true)}
-          className="w-full rounded-md bg-[#F3BA2F] hover:bg-[#F3BA2F]/90 px-3 py-1.5 text-xs font-semibold text-black transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F3BA2F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
+          className="w-full rounded-md bg-[#9333EA] hover:bg-[#9333EA]/90 px-3 py-1.5 text-xs font-semibold text-white transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9333EA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
         >
           Enter Giveaway
         </button>
@@ -141,7 +141,7 @@ export default function HourlyGiveaway() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.3 }}
-              className="fixed left-1/2 top-1/2 z-[101] w-[95%] max-w-lg max-h-[90vh] -translate-x-1/2 -translate-y-1/2 rounded-xl md:rounded-2xl border border-[#F3BA2F]/30 bg-gradient-to-b from-[#0f0f0f] to-black shadow-2xl overflow-hidden flex flex-col"
+              className="fixed left-1/2 top-1/2 z-[101] w-[95%] max-w-lg max-h-[90vh] -translate-x-1/2 -translate-y-1/2 rounded-xl md:rounded-2xl border border-[#9333EA]/30 bg-gradient-to-b from-[#0f0f0f] to-black shadow-2xl overflow-hidden flex flex-col"
             >
               <div className="overflow-y-auto overscroll-contain p-4 md:p-6">
                 <div className="absolute inset-0 overflow-hidden rounded-xl md:rounded-2xl pointer-events-none">
@@ -155,7 +155,7 @@ export default function HourlyGiveaway() {
                       repeat: Number.POSITIVE_INFINITY,
                       ease: "easeInOut",
                     }}
-                    className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[#F3BA2F]/10 blur-3xl"
+                    className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[#9333EA]/10 blur-3xl"
                   />
                   <motion.div
                     animate={{
@@ -168,7 +168,7 @@ export default function HourlyGiveaway() {
                       ease: "easeInOut",
                       delay: 1,
                     }}
-                    className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-[#F3BA2F]/10 blur-3xl"
+                    className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-[#9333EA]/10 blur-3xl"
                   />
                 </div>
 
@@ -209,12 +209,12 @@ export default function HourlyGiveaway() {
                           repeat: Number.POSITIVE_INFINITY,
                           ease: "easeInOut",
                         }}
-                        className="absolute inset-0 rounded-full bg-[#F3BA2F]/30 blur-xl"
+                        className="absolute inset-0 rounded-full bg-[#9333EA]/30 blur-xl"
                       />
-                      <div className="relative z-10 h-full w-full rounded-full overflow-hidden border-2 border-[#F3BA2F]/40 shadow-[0_0_20px_rgba(243,186,47,0.4)]">
+                      <div className="relative z-10 h-full w-full rounded-full overflow-hidden border-2 border-[#9333EA]/40 shadow-[0_0_20px_rgba(147,51,234,0.4)]">
                         <Image
                           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_2025-10-09_04-17-56-h9xm8mZbsVcEptVJPDd2y4VdJmruy1.jpg"
-                          alt="LOOTER"
+                          alt="LOOTCHAT"
                           width={96}
                           height={96}
                           className="h-full w-full object-cover"
@@ -238,7 +238,7 @@ export default function HourlyGiveaway() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.3 }}
-                      className="inline-flex items-center gap-1.5 md:gap-2 rounded-full border border-[#F3BA2F]/30 bg-[#F3BA2F]/10 px-3 md:px-4 py-1 md:py-1.5"
+                      className="inline-flex items-center gap-1.5 md:gap-2 rounded-full border border-[#9333EA]/30 bg-[#9333EA]/10 px-3 md:px-4 py-1 md:py-1.5"
                     >
                       <motion.div
                         animate={{
@@ -250,9 +250,9 @@ export default function HourlyGiveaway() {
                           ease: "linear",
                         }}
                       >
-                        <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-[#F3BA2F]" />
+                        <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-[#9333EA]" />
                       </motion.div>
-                      <span className="text-xs md:text-sm font-bold text-[#F3BA2F] uppercase tracking-wider">
+                      <span className="text-xs md:text-sm font-bold text-[#9333EA] uppercase tracking-wider">
                         Launch Week Special
                       </span>
                       <motion.div
@@ -266,7 +266,7 @@ export default function HourlyGiveaway() {
                           delay: 0.5,
                         }}
                       >
-                        <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-[#F3BA2F]" />
+                        <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-[#9333EA]" />
                       </motion.div>
                     </motion.div>
                   </div>
@@ -276,7 +276,7 @@ export default function HourlyGiveaway() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="relative mb-4 md:mb-6 rounded-lg md:rounded-xl border border-[#F3BA2F]/20 bg-gradient-to-br from-[#F3BA2F]/5 to-transparent p-3 md:p-5 backdrop-blur-sm"
+                  className="relative mb-4 md:mb-6 rounded-lg md:rounded-xl border border-[#9333EA]/20 bg-gradient-to-br from-[#9333EA]/5 to-transparent p-3 md:p-5 backdrop-blur-sm"
                 >
                   <div className="space-y-3 md:space-y-4">
                     <p className="text-center text-sm md:text-base text-zinc-200 leading-relaxed text-balance">
@@ -285,7 +285,7 @@ export default function HourlyGiveaway() {
                       <span className="font-bold text-white">entire week!</span>
                     </p>
 
-                    <div className="flex items-center justify-center gap-2 rounded-lg border border-[#F3BA2F]/30 bg-black/40 px-3 md:px-4 py-2 md:py-3">
+                    <div className="flex items-center justify-center gap-2 rounded-lg border border-[#9333EA]/30 bg-black/40 px-3 md:px-4 py-2 md:py-3">
                       <motion.div
                         animate={{
                           scale: [1, 1.2, 1],
@@ -296,9 +296,9 @@ export default function HourlyGiveaway() {
                           ease: "easeInOut",
                         }}
                       >
-                        <Clock className="h-4 w-4 md:h-5 md:w-5 text-[#F3BA2F]" />
+                        <Clock className="h-4 w-4 md:h-5 md:w-5 text-[#9333EA]" />
                       </motion.div>
-                      <span className="text-xs md:text-sm font-bold text-[#F3BA2F] uppercase tracking-wide">
+                      <span className="text-xs md:text-sm font-bold text-[#9333EA] uppercase tracking-wide">
                         Every hour, on the hour without fail
                       </span>
                     </div>
@@ -311,17 +311,17 @@ export default function HourlyGiveaway() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="rounded-lg md:rounded-xl border border-[#F3BA2F]/20 bg-gradient-to-br from-[#F3BA2F]/10 to-[#F3BA2F]/5 p-3 md:p-4"
+                    className="rounded-lg md:rounded-xl border border-[#9333EA]/20 bg-gradient-to-br from-[#9333EA]/10 to-[#9333EA]/5 p-3 md:p-4"
                   >
                     <div className="flex items-center gap-2 mb-2 md:mb-3">
-                      <Ticket className="h-4 w-4 md:h-5 md:w-5 text-[#F3BA2F]" />
-                      <h3 className="text-sm md:text-base font-bold text-[#F3BA2F]">How to Enter</h3>
+                      <Ticket className="h-4 w-4 md:h-5 md:w-5 text-[#9333EA]" />
+                      <h3 className="text-sm md:text-base font-bold text-[#9333EA]">How to Enter</h3>
                     </div>
                     <p className="text-xs md:text-sm text-zinc-300 leading-relaxed text-balance mb-2 md:mb-3">
                       Entering couldn't be easier! All you need is to be a holder of{" "}
-                      <span className="font-bold text-[#F3BA2F]">$LOOT</span> at the time of the draw.
+                      <span className="font-bold text-[#9333EA]">$LOOT</span> at the time of the draw.
                     </p>
-                    <div className="rounded-lg border border-[#F3BA2F]/30 bg-black/30 p-2.5 md:p-3">
+                    <div className="rounded-lg border border-[#9333EA]/30 bg-black/30 p-2.5 md:p-3">
                       <p className="text-xs text-zinc-400 leading-relaxed">
                         <span className="font-semibold text-white">Each token = 1 ticket</span>
                         <br />
@@ -367,9 +367,9 @@ export default function HourlyGiveaway() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.7 }}
-                    className="rounded-lg md:rounded-xl border border-[#F3BA2F]/30 bg-gradient-to-r from-[#F3BA2F]/20 to-[#F3BA2F]/10 p-3 md:p-4 text-center"
+                    className="rounded-lg md:rounded-xl border border-[#9333EA]/30 bg-gradient-to-r from-[#9333EA]/20 to-[#9333EA]/10 p-3 md:p-4 text-center"
                   >
-                    <p className="text-sm md:text-base font-bold text-[#F3BA2F]">Good Luck and LOOT the WORLD!</p>
+                    <p className="text-sm md:text-base font-bold text-[#9333EA]">Good Luck and LOOT the WORLD!</p>
                   </motion.div>
                 </div>
 
@@ -379,7 +379,7 @@ export default function HourlyGiveaway() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
                   onClick={() => setShowModal(false)}
-                  className="relative mt-4 md:mt-6 w-full overflow-hidden rounded-lg md:rounded-xl bg-[#F3BA2F] hover:bg-[#F3BA2F]/90 px-4 py-2.5 md:py-3 text-sm font-bold text-black transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F3BA2F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
+                  className="relative mt-4 md:mt-6 w-full overflow-hidden rounded-lg md:rounded-xl bg-[#9333EA] hover:bg-[#9333EA]/90 px-4 py-2.5 md:py-3 text-sm font-bold text-white transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9333EA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
                 >
                   <motion.div
                     animate={{

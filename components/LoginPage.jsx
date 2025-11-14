@@ -117,10 +117,10 @@ export default function LoginPage({ onConnect }) {
       <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4 md:p-6">
         <div className="w-full max-w-[400px]">
           <div className="flex justify-center mb-6">
-            <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#F3BA2F] flex items-center justify-center shadow-[0_0_30px_rgba(243,186,47,0.4)]">
+            <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#9333EA] flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.4)]">
               <Image
                 src="/images/ghost-logo.jpg"
-                alt="Looter Ghost"
+                alt="LOOTCHAT Ghost"
                 width={64}
                 height={64}
                 className="w-full h-full rounded-full object-cover"
@@ -129,12 +129,12 @@ export default function LoginPage({ onConnect }) {
           </div>
 
           <div className="text-center mb-6">
-            <h2 className="text-lg md:text-xl font-bold text-[#F3BA2F]">Looter: Loot the World!</h2>
+            <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: Loot the World!</h2>
           </div>
 
           <div className="text-center mb-6 md:mb-8">
             <h1 className="text-xl md:text-2xl font-semibold text-white mb-2">Create Your Account</h1>
-            <p className="text-xs md:text-sm text-gray-400">Access the LootOS Platform</p>
+            <p className="text-xs md:text-sm text-gray-400">Access the LOOTCHAT Platform</p>
           </div>
 
           <form onSubmit={handleSignUp} className="space-y-3 md:space-y-4">
@@ -149,7 +149,7 @@ export default function LoginPage({ onConnect }) {
                 onChange={(e) => setSignUpName(e.target.value)}
                 placeholder="Your name"
                 required
-                className="w-full px-4 py-2.5 bg-white/5 border border-[#F3BA2F]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F3BA2F]/60 focus:border-transparent transition-all"
+                className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
               />
             </div>
 
@@ -164,7 +164,7 @@ export default function LoginPage({ onConnect }) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-4 py-2.5 bg-white/5 border border-[#F3BA2F]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F3BA2F]/60 focus:border-transparent transition-all"
+                className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
               />
             </div>
 
@@ -180,14 +180,14 @@ export default function LoginPage({ onConnect }) {
                 placeholder="Create a password"
                 required
                 minLength={6}
-                className="w-full px-4 py-2.5 bg-white/5 border border-[#F3BA2F]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F3BA2F]/60 focus:border-transparent transition-all"
+                className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
               />
             </div>
 
             <button
               type="submit"
               disabled={isConnecting}
-              className="w-full px-4 py-3 bg-[#F3BA2F] text-black rounded-lg text-sm font-semibold hover:bg-[#F3BA2F]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(243,186,47,0.25)]"
+              className="w-full px-4 py-3 bg-[#9333EA] text-white rounded-lg text-sm font-semibold hover:bg-[#9333EA]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(147,51,234,0.25)]"
             >
               {isConnecting ? "Creating Account..." : "Sign Up"}
             </button>
@@ -203,7 +203,7 @@ export default function LoginPage({ onConnect }) {
             Already have an account?{" "}
             <button
               onClick={() => setShowSignUp(false)}
-              className="text-[#F3BA2F] font-semibold hover:text-[#F3BA2F]/80 transition-colors"
+              className="text-[#9333EA] font-semibold hover:text-[#9333EA]/80 transition-colors"
             >
               Sign In
             </button>
@@ -215,11 +215,11 @@ export default function LoginPage({ onConnect }) {
                 href="https://x.com/LooterGPT"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#F3BA2F]/40 transition-all group"
+                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
                 aria-label="Follow us on X"
               >
                 <svg
-                  className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#F3BA2F] transition-colors"
+                  className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#9333EA] transition-colors"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -230,11 +230,11 @@ export default function LoginPage({ onConnect }) {
                 href="https://t.me/LooterGPT"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#F3BA2F]/40 transition-all group"
+                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
                 aria-label="Join us on Telegram"
               >
                 <svg
-                  className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#F3BA2F] transition-colors"
+                  className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#9333EA] transition-colors"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -242,13 +242,6 @@ export default function LoginPage({ onConnect }) {
                 </svg>
               </a>
             </div>
-            <Image
-              src="/images/solana-logo.svg"
-              alt="Solana"
-              width={180}
-              height={45}
-              className="h-12 md:h-14 w-auto opacity-90 hover:opacity-100 transition-opacity mt-2"
-            />
           </div>
         </div>
       </div>
@@ -259,10 +252,10 @@ export default function LoginPage({ onConnect }) {
     <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4 md:p-6">
       <div className="w-full max-w-[400px]">
         <div className="flex justify-center mb-6">
-          <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#F3BA2F] flex items-center justify-center shadow-[0_0_30px_rgba(243,186,47,0.4)]">
+          <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#9333EA] flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.4)]">
             <Image
               src="/images/ghost-logo.jpg"
-              alt="Looter Ghost"
+              alt="LOOTCHAT Ghost"
               width={64}
               height={64}
               className="w-full h-full rounded-full object-cover"
@@ -271,14 +264,14 @@ export default function LoginPage({ onConnect }) {
         </div>
 
         <div className="text-center mb-6">
-          <h2 className="text-lg md:text-xl font-bold text-[#F3BA2F]">Looter: Loot the World!</h2>
+          <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: Loot the World!</h2>
         </div>
 
         <div className="space-y-2 md:space-y-3 mb-6">
           <button
             onClick={handlePhantomConnect}
             disabled={isConnecting}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#F3BA2F] hover:bg-[#F3BA2F]/90 text-black rounded-lg text-sm font-semibold transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(243,186,47,0.3)]"
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#9333EA] hover:bg-[#9333EA]/90 text-white rounded-lg text-sm font-semibold transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(147,51,234,0.3)]"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41c2.93 1.18 5 4.05 5 7.41 0 2.08-.8 3.97-2.1 5.39M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z" />
@@ -289,7 +282,7 @@ export default function LoginPage({ onConnect }) {
           <button
             onClick={handleGitHubSignIn}
             disabled={isConnecting}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white/5 border border-[#F3BA2F]/20 hover:bg-white/10 rounded-lg text-sm font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white/5 border border-[#9333EA]/20 hover:bg-white/10 rounded-lg text-sm font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
@@ -300,7 +293,7 @@ export default function LoginPage({ onConnect }) {
           <button
             onClick={handleSSOSignIn}
             disabled={isConnecting}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white/5 border border-[#F3BA2F]/20 hover:bg-white/10 rounded-lg text-sm font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white/5 border border-[#9333EA]/20 hover:bg-white/10 rounded-lg text-sm font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -312,7 +305,7 @@ export default function LoginPage({ onConnect }) {
 
         <div className="relative mb-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#F3BA2F]/20"></div>
+            <div className="w-full border-t border-[#9333EA]/20"></div>
           </div>
           <div className="relative flex justify-center text-xs">
             <span className="bg-black px-2 text-gray-500">OR</span>
@@ -331,7 +324,7 @@ export default function LoginPage({ onConnect }) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
-              className="w-full px-4 py-2.5 bg-white/5 border border-[#F3BA2F]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F3BA2F]/60 focus:border-transparent transition-all"
+              className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
             />
           </div>
 
@@ -340,7 +333,7 @@ export default function LoginPage({ onConnect }) {
               <label htmlFor="password" className="block text-sm font-medium text-white">
                 Password
               </label>
-              <a href="#" className="text-sm text-[#F3BA2F] hover:text-[#F3BA2F]/80 transition-colors font-medium">
+              <a href="#" className="text-sm text-[#9333EA] hover:text-[#9333EA]/80 transition-colors font-medium">
                 Forgot Password?
               </a>
             </div>
@@ -351,14 +344,14 @@ export default function LoginPage({ onConnect }) {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              className="w-full px-4 py-2.5 bg-white/5 border border-[#F3BA2F]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F3BA2F]/60 focus:border-transparent transition-all"
+              className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
             />
           </div>
 
           <button
             type="submit"
             disabled={isConnecting}
-            className="w-full px-4 py-3 bg-[#F3BA2F] text-black rounded-lg text-sm font-semibold hover:bg-[#F3BA2F]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(243,186,47,0.25)]"
+            className="w-full px-4 py-3 bg-[#9333EA] text-white rounded-lg text-sm font-semibold hover:bg-[#9333EA]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(147,51,234,0.25)]"
           >
             {isConnecting ? "Signing In..." : "Sign In"}
           </button>
@@ -374,7 +367,7 @@ export default function LoginPage({ onConnect }) {
           Don't have an account?{" "}
           <button
             onClick={() => setShowSignUp(true)}
-            className="text-[#F3BA2F] font-semibold hover:text-[#F3BA2F]/80 transition-colors"
+            className="text-[#9333EA] font-semibold hover:text-[#9333EA]/80 transition-colors"
           >
             Sign Up Now
           </button>
@@ -386,11 +379,11 @@ export default function LoginPage({ onConnect }) {
               href="https://x.com/LooterGPT"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#F3BA2F]/40 transition-all group"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
               aria-label="Follow us on X"
             >
               <svg
-                className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#F3BA2F] transition-colors"
+                className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#9333EA] transition-colors"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -401,11 +394,11 @@ export default function LoginPage({ onConnect }) {
               href="https://t.me/LooterGPT"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#F3BA2F]/40 transition-all group"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
               aria-label="Join us on Telegram"
             >
               <svg
-                className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#F3BA2F] transition-colors"
+                className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#9333EA] transition-colors"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -413,13 +406,6 @@ export default function LoginPage({ onConnect }) {
               </svg>
             </a>
           </div>
-          <Image
-            src="/images/solana-logo.svg"
-            alt="Solana"
-            width={180}
-            height={45}
-            className="h-12 md:h-14 w-auto opacity-90 hover:opacity-100 transition-opacity mt-2"
-          />
         </div>
       </div>
     </div>
