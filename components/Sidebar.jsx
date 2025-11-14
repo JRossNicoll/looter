@@ -152,10 +152,9 @@ export default function Sidebar({
       >
         <div className="flex items-center gap-2 border-b border-white/5 px-3 py-2.5">
           <div className="flex items-center gap-2">
-            {/* Updated to purple ghost logo and purple background */}
             <div className="flex h-6 w-6 items-center justify-center rounded-full overflow-hidden bg-[#9333EA]">
               <Image
-                src="/images/ghost-logo-purple.png"
+                src="/images/ghost-logo-3-eyes.png"
                 alt="LOOTCHAT"
                 width={24}
                 height={24}
