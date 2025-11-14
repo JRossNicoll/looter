@@ -212,7 +212,7 @@ export default function LoginPage({ onConnect }) {
           <div className="flex flex-col items-center gap-4 mt-6">
             <div className="flex items-center justify-center gap-3">
               <a
-                href="https://x.com/LooterGPT"
+                href="https://x.com/LootChat_SOL"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
@@ -377,7 +377,7 @@ export default function LoginPage({ onConnect }) {
         <div className="flex flex-col items-center gap-4 mt-6">
           <div className="flex items-center justify-center gap-3">
             <a
-              href="https://x.com/LooterGPT"
+              href="https://x.com/LootChat_SOL"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"

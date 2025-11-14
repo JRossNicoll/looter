@@ -334,7 +334,7 @@ export default function Sidebar({
           {/* Social Links */}
           <div className="flex items-center gap-1 md:gap-1.5">
             <a
-              href="https://x.com/LooterGPT"
+              href="https://x.com/LootChat_SOL" // Updated X link to LootChat_SOL
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
