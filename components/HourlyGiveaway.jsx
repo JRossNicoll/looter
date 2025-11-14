@@ -5,43 +5,43 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
 export default function HourlyGiveaway() {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 59, seconds: 0 })
-  const [giveawayValue, setGiveawayValue] = useState(60)
+  const [timeLeft, setTimeLeft] = useState({ minutes: 60, seconds: 0 })
+  const [giveawayValue, setGiveawayValue] = useState(50)
   const [showModal, setShowModal] = useState(false)
+  const [endTime] = useState(() => Date.now() + 60 * 60 * 1000) // Fixed end time 1 hour from now
 
   useEffect(() => {
-    const startTime = Date.now()
-    const totalSeconds = 59 * 60 // 59 minutes in seconds
-
     const calculateTimeAndValue = () => {
-      const elapsed = Math.floor((Date.now() - startTime) / 1000)
-      const remaining = Math.max(0, totalSeconds - elapsed)
+      const now = Date.now()
+      const remaining = Math.max(0, Math.floor((endTime - now) / 1000))
       
+      if (remaining === 0) {
+        // Timer expired, reload to reset
+        window.location.reload()
+        return
+      }
+
       const minutes = Math.floor(remaining / 60)
       const seconds = remaining % 60
 
       setTimeLeft({ minutes, seconds })
 
-      // Calculate value from $60 to $1000 over 59 minutes
-      const baseValue = 60
-      const maxValue = 1000
-      const valueRange = maxValue - baseValue
-      const progress = elapsed / totalSeconds
-      const currentValue = baseValue + valueRange * Math.min(progress, 1)
+      // Calculate value: starts at $50, ends at $500
+      const totalDuration = 60 * 60 // 60 minutes in seconds
+      const elapsed = totalDuration - remaining
+      const progress = elapsed / totalDuration
+      const baseValue = 50
+      const maxValue = 500
+      const currentValue = baseValue + (maxValue - baseValue) * progress
 
       setGiveawayValue(currentValue)
-
-      // Reset when timer reaches 0
-      if (remaining === 0) {
-        window.location.reload()
-      }
     }
 
     calculateTimeAndValue()
     const interval = setInterval(calculateTimeAndValue, 1000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [endTime])
 
   const formatTime = (num) => String(num).padStart(2, "0")
   const formatValue = (val) => `$${val.toFixed(2)}`
@@ -112,7 +112,7 @@ export default function HourlyGiveaway() {
             className="h-full bg-gradient-to-r from-[#9333EA] to-green-400"
             initial={{ width: "0%" }}
             animate={{
-              width: `${((59 - timeLeft.minutes) / 59) * 100}%`,
+              width: `${((60 - timeLeft.minutes) / 60) * 100}%`,
             }}
             transition={{ duration: 0.5 }}
           />
@@ -382,7 +382,7 @@ export default function HourlyGiveaway() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
                   onClick={() => setShowModal(false)}
-                  className="relative mt-4 md:mt-6 w-full overflow-hidden rounded-lg md:rounded-xl bg-[#9333EA] hover:bg-[#9333EA]/90 px-4 py-2.5 md:py-3 text-sm font-bold text-white transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9333EA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
+                  className="relative mt-4 md:mt-6 w-full overflow-hidden rounded-lg md:rounded-xl bg-[#9333EA] hover:bg-[#9333EA]/90 px-4 py-2.5 md:py-3 text-sm font-semibold text-white transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9333EA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
                 >
                   <motion.div
                     animate={{

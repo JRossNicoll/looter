@@ -129,7 +129,7 @@ export default function LoginPage({ onConnect }) {
           </div>
 
           <div className="text-center mb-6">
-            <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: Loot the World!</h2>
+            <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: LOOT THE WORLD!</h2>
           </div>
 
           <div className="text-center mb-6 md:mb-8">
@@ -264,7 +264,7 @@ export default function LoginPage({ onConnect }) {
         </div>
 
         <div className="text-center mb-6">
-          <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: Loot the World!</h2>
+          <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: LOOT THE WORLD!</h2>
         </div>
 
         <div className="space-y-2 md:space-y-3 mb-6">
