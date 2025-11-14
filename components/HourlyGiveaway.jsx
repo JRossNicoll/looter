@@ -5,33 +5,36 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
 export default function HourlyGiveaway() {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 0, seconds: 0 })
+  const [timeLeft, setTimeLeft] = useState({ minutes: 59, seconds: 0 })
   const [giveawayValue, setGiveawayValue] = useState(60)
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    const calculateTimeAndValue = () => {
-      const now = new Date()
-      const nextHour = new Date(now)
-      nextHour.setHours(now.getHours() + 1, 0, 0, 0)
+    const startTime = Date.now()
+    const totalSeconds = 59 * 60 // 59 minutes in seconds
 
-      const diff = nextHour - now
-      const minutes = Math.floor(diff / 60000)
-      const seconds = Math.floor((diff % 60000) / 1000)
+    const calculateTimeAndValue = () => {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000)
+      const remaining = Math.max(0, totalSeconds - elapsed)
+      
+      const minutes = Math.floor(remaining / 60)
+      const seconds = remaining % 60
 
       setTimeLeft({ minutes, seconds })
 
-      const minutesElapsed = 59 - minutes
-      const secondsElapsed = 60 - seconds
-      const totalSecondsElapsed = minutesElapsed * 60 + secondsElapsed
-      const totalSecondsInHour = 3600
-
+      // Calculate value from $60 to $1000 over 59 minutes
       const baseValue = 60
       const maxValue = 1000
       const valueRange = maxValue - baseValue
-      const currentValue = baseValue + valueRange * (totalSecondsElapsed / totalSecondsInHour)
+      const progress = elapsed / totalSeconds
+      const currentValue = baseValue + valueRange * Math.min(progress, 1)
 
       setGiveawayValue(currentValue)
+
+      // Reset when timer reaches 0
+      if (remaining === 0) {
+        window.location.reload()
+      }
     }
 
     calculateTimeAndValue()
