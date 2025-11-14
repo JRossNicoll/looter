@@ -342,6 +342,7 @@ export default function LoginPage({ onConnect }) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
               required
               minLength={6}
               className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
