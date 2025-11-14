@@ -21,7 +21,7 @@ export default function Header({ createNewChat, sidebarCollapsed, setSidebarOpen
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9333EA] overflow-hidden">
             <Image
-              src="/images/ghost-logo.jpg"
+              src="/images/ghost-logo-purple.png"
               alt="LOOTCHAT"
               width={32}
               height={32}

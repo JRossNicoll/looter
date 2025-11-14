@@ -117,13 +117,13 @@ export default function LoginPage({ onConnect }) {
       <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4 md:p-6">
         <div className="w-full max-w-[400px]">
           <div className="flex justify-center mb-6">
-            <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#9333EA] flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.4)]">
+            <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-[0_0_30px_rgba(147,51,234,0.4)]">
               <Image
-                src="/images/ghost-logo.jpg"
+                src="/images/ghost-logo-purple.png"
                 alt="LOOTCHAT Ghost"
-                width={64}
-                height={64}
-                className="w-full h-full rounded-full object-cover"
+                width={96}
+                height={96}
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -252,13 +252,13 @@ export default function LoginPage({ onConnect }) {
     <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4 md:p-6">
       <div className="w-full max-w-[400px]">
         <div className="flex justify-center mb-6">
-          <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#9333EA] flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.4)]">
+          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-[0_0_30px_rgba(147,51,234,0.4)]">
             <Image
-              src="/images/ghost-logo.jpg"
+              src="/images/ghost-logo-purple.png"
               alt="LOOTCHAT Ghost"
-              width={64}
-              height={64}
-              className="w-full h-full rounded-full object-cover"
+              width={96}
+              height={96}
+              className="w-full h-full object-cover"
             />
           </div>
         </div>

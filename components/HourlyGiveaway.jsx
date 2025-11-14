@@ -213,7 +213,7 @@ export default function HourlyGiveaway() {
                       />
                       <div className="relative z-10 h-full w-full rounded-full overflow-hidden border-2 border-[#9333EA]/40 shadow-[0_0_20px_rgba(147,51,234,0.4)]">
                         <Image
-                          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_2025-10-09_04-17-56-h9xm8mZbsVcEptVJPDd2y4VdJmruy1.jpg"
+                          src="/images/ghost-logo-purple.png"
                           alt="LOOTCHAT"
                           width={96}
                           height={96}
@@ -319,7 +319,7 @@ export default function HourlyGiveaway() {
                     </div>
                     <p className="text-xs md:text-sm text-zinc-300 leading-relaxed text-balance mb-2 md:mb-3">
                       Entering couldn't be easier! All you need is to be a holder of{" "}
-                      <span className="font-bold text-[#9333EA]">$LOOT</span> at the time of the draw.
+                      <span className="font-bold text-white">$LOOT</span> at the time of the draw.
                     </p>
                     <div className="rounded-lg border border-[#9333EA]/30 bg-black/30 p-2.5 md:p-3">
                       <p className="text-xs text-zinc-400 leading-relaxed">

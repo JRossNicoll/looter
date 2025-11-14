@@ -11,7 +11,7 @@ function ThinkingMessage({ onPause }) {
     <div className="flex gap-3 message-enter">
       <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#9333EA] overflow-hidden">
         <Image
-          src="/images/ghost-logo.jpg"
+          src="/images/ghost-logo-purple.png"
           alt="LOOTCHAT"
           width={32}
           height={32}
@@ -83,7 +83,7 @@ const ChatPane = forwardRef(function ChatPane(
             <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
               <div className="flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full bg-[#9333EA] overflow-hidden">
                 <Image
-                  src="/images/ghost-logo.jpg"
+                  src="/images/ghost-logo-purple.png"
                   alt="LOOTCHAT"
                   width={80}
                   height={80}
