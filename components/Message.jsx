@@ -2,7 +2,7 @@
 
 import { cls } from "./utils"
 import Image from "next/image"
-import { Copy, RefreshCw, Share2, ThumbsUp, ThumbsDown, MoreHorizontal } from "lucide-react"
+import { Copy, RefreshCw, Share2, ThumbsUp, ThumbsDown, MoreHorizontal } from 'lucide-react'
 import { useState, useEffect } from "react"
 
 export default function Message({ role, children, timestamp, responseTime, onRegenerate }) {
@@ -64,13 +64,13 @@ export default function Message({ role, children, timestamp, responseTime, onReg
 
       <div className={cls("flex gap-3", isUser ? "justify-end" : "justify-start")}>
         {!isUser && (
-          <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F3BA2F] overflow-hidden">
+          <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#9333EA]/20 to-[#9333EA]/5 overflow-hidden">
             <Image
-              src="/images/ghost-logo.jpg"
-              alt="LOOTER"
+              src="/images/ghost-logo-purple.png"
+              alt="LOOTCHAT"
               width={32}
               height={32}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
           </div>
         )}
@@ -111,7 +111,7 @@ export default function Message({ role, children, timestamp, responseTime, onReg
                 onClick={handleLike}
                 className={cls(
                   "rounded p-1.5 hover:bg-zinc-800 transition-colors",
-                  liked === "up" ? "text-[#F3BA2F]" : "hover:text-zinc-300",
+                  liked === "up" ? "text-[#9333EA]" : "hover:text-zinc-300",
                 )}
                 title="Helpful"
               >

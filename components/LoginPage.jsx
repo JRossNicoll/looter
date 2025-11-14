@@ -227,7 +227,7 @@ export default function LoginPage({ onConnect }) {
                 </svg>
               </a>
               <a
-                href="https://t.me/LooterGPT"
+                href="https://t.me/LOOTCHATOFFICIAL"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
@@ -391,7 +391,7 @@ export default function LoginPage({ onConnect }) {
               </svg>
             </a>
             <a
-              href="https://t.me/LooterGPT"
+              href="https://t.me/LOOTCHATOFFICIAL"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"

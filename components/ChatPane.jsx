@@ -9,13 +9,13 @@ import Image from "next/image"
 function ThinkingMessage({ onPause }) {
   return (
     <div className="flex gap-3 message-enter">
-      <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#9333EA] overflow-hidden">
+      <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full overflow-hidden">
         <Image
           src="/images/ghost-logo-purple.png"
           alt="LOOTCHAT"
           width={32}
           height={32}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
         />
       </div>
       <div className="flex items-center gap-3">
@@ -81,13 +81,13 @@ const ChatPane = forwardRef(function ChatPane(
           <div className="flex h-full flex-col items-center justify-center px-4 py-6 md:px-6">
             {/* Logo section - centered */}
             <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-              <div className="flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full bg-[#9333EA] overflow-hidden">
+              <div className="flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full overflow-hidden">
                 <Image
                   src="/images/ghost-logo-purple.png"
                   alt="LOOTCHAT"
                   width={80}
                   height={80}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white">LOOTCHAT</h1>

@@ -6,7 +6,7 @@ import Image from "next/image"
 
 export default function HourlyGiveaway() {
   const [timeLeft, setTimeLeft] = useState({ minutes: 0, seconds: 0 })
-  const [giveawayValue, setGiveawayValue] = useState(100)
+  const [giveawayValue, setGiveawayValue] = useState(60)
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function HourlyGiveaway() {
       const totalSecondsElapsed = minutesElapsed * 60 + secondsElapsed
       const totalSecondsInHour = 3600
 
-      const baseValue = 100
+      const baseValue = 60
       const maxValue = 1000
       const valueRange = maxValue - baseValue
       const currentValue = baseValue + valueRange * (totalSecondsElapsed / totalSecondsInHour)

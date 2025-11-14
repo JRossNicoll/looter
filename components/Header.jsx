@@ -19,13 +19,13 @@ export default function Header({ createNewChat, sidebarCollapsed, setSidebarOpen
       {/* Center: Logo and Navigation */}
       <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-8">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9333EA] overflow-hidden">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden bg-[#9333EA] p-1">
             <Image
               src="/images/ghost-logo-purple.png"
               alt="LOOTCHAT"
               width={32}
               height={32}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
           </div>
           <div className="text-sm font-bold tracking-wider text-white uppercase">LOOTCHAT</div>
