@@ -8,7 +8,23 @@ export default function HourlyGiveaway() {
   const [timeLeft, setTimeLeft] = useState({ minutes: 60, seconds: 0 })
   const [giveawayValue, setGiveawayValue] = useState(50)
   const [showModal, setShowModal] = useState(false)
-  const [endTime] = useState(() => Date.now() + 60 * 60 * 1000) // Fixed end time 1 hour from now
+  const [endTime] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('giveawayEndTime')
+      const now = Date.now()
+      
+      // If we have a stored time and it's still in the future, use it
+      if (stored && parseInt(stored) > now) {
+        return parseInt(stored)
+      }
+      
+      // Otherwise, create a new end time 1 hour from now
+      const newEndTime = now + 60 * 60 * 1000
+      localStorage.setItem('giveawayEndTime', newEndTime.toString())
+      return newEndTime
+    }
+    return Date.now() + 60 * 60 * 1000
+  })
 
   useEffect(() => {
     const calculateTimeAndValue = () => {
@@ -16,7 +32,9 @@ export default function HourlyGiveaway() {
       const remaining = Math.max(0, Math.floor((endTime - now) / 1000))
       
       if (remaining === 0) {
-        // Timer expired, reload to reset
+        localStorage.removeItem('giveawayEndTime')
+        const newEndTime = Date.now() + 60 * 60 * 1000
+        localStorage.setItem('giveawayEndTime', newEndTime.toString())
         window.location.reload()
         return
       }
