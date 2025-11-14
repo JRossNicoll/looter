@@ -242,9 +242,14 @@ export default function LoginPage({ onConnect }) {
                 </svg>
               </a>
             </div>
-            <div className="text-[10px] text-zinc-600 font-mono break-all px-2 text-center">
+            <a
+              href="https://pump.fun/coin/CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] text-zinc-400 hover:text-[#9333EA] font-mono break-all px-2 text-center transition-colors underline decoration-dotted"
+            >
               CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -410,9 +415,14 @@ export default function LoginPage({ onConnect }) {
               </svg>
             </a>
           </div>
-          <div className="text-[10px] text-zinc-600 font-mono break-all px-2 text-center">
+          <a
+            href="https://pump.fun/coin/CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-zinc-400 hover:text-[#9333EA] font-mono break-all px-2 text-center transition-colors underline decoration-dotted"
+          >
             CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump
-          </div>
+          </a>
         </div>
       </div>
     </div>
