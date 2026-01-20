@@ -327,13 +327,13 @@ export default function HourlyGiveaway() {
                     </div>
                     <p className="text-xs md:text-sm text-zinc-300 leading-relaxed text-balance mb-2 md:mb-3">
                       Entering couldn't be easier! All you need is to be a holder of{" "}
-                      <span className="font-bold text-white">$LOOT</span> at the time of the draw.
+                      <span className="font-bold text-white">$DGEN</span> at the time of the draw.
                     </p>
                     <div className="rounded-lg border border-[#9333EA]/30 bg-black/30 p-2.5 md:p-3">
                       <p className="text-xs text-zinc-400 leading-relaxed">
                         <span className="font-semibold text-white">Each token = 1 ticket</span>
                         <br />
-                        Example: Holding 100 $LOOT = 100 tickets
+                        Example: Holding 100 $DGEN = 100 tickets
                       </p>
                     </div>
                   </motion.div>
@@ -364,7 +364,7 @@ export default function HourlyGiveaway() {
                         <p className="text-xs text-zinc-400 leading-relaxed text-balance">
                           The entire process is automatic and autonomous. Winners are randomly selected with a new seed
                           after each draw, and winnings are sent directly to the winner's wallet holding the winning
-                          $LOOT token!
+                          $DGEN token!
                         </p>
                       </div>
                     </div>
@@ -377,7 +377,7 @@ export default function HourlyGiveaway() {
                     transition={{ delay: 0.7 }}
                     className="rounded-lg md:rounded-xl border border-[#9333EA]/30 bg-gradient-to-r from-[#9333EA]/20 to-[#9333EA]/10 p-3 md:p-4 text-center"
                   >
-                    <p className="text-sm md:text-base font-bold text-[#9333EA]">Good Luck and LOOT the WORLD!</p>
+                    <p className="text-sm md:text-base font-bold text-[#9333EA]">Good Luck!</p>
                   </motion.div>
                 </div>
 
