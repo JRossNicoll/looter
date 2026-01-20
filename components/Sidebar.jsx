@@ -352,7 +352,7 @@ export default function Sidebar({
           {/* Social Links */}
           <div className="flex items-center gap-1 md:gap-1.5">
             <a
-              href="https://x.com/looterchat"
+              href="https://x.com/DegenLLM"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/40 transition-all group"
@@ -378,15 +378,7 @@ export default function Sidebar({
             </div>
           </div>
 
-          {/* Updated Contract Address */}
-          <a
-            href="https://pump.fun/coin/CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1.5 text-[9px] text-zinc-400 hover:text-cyan-400 font-mono break-all text-center px-1 block transition-colors underline decoration-dotted"
-          >
-            CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump
-          </a>
+
         </div>
       </motion.aside>
     </>

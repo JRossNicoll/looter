@@ -217,8 +217,8 @@ export default function LoginPage({ onConnect }) {
 
           {/* Footer */}
           <div className="mt-8 flex flex-col items-center gap-2.5">
-            <a href="https://x.com/looterchat" target="_blank" rel="noopener noreferrer" className="text-[12px] text-zinc-400 hover:text-white transition-colors">
-              @looterchat
+            <a href="https://x.com/DegenLLM" target="_blank" rel="noopener noreferrer" className="text-[12px] text-zinc-400 hover:text-white transition-colors">
+              @DegenLLM
             </a>
             <a href="https://pump.fun/coin/CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors">
               CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump
@@ -347,8 +347,8 @@ export default function LoginPage({ onConnect }) {
 
         {/* Footer */}
         <div className="mt-8 flex flex-col items-center gap-2.5">
-          <a href="https://x.com/looterchat" target="_blank" rel="noopener noreferrer" className="text-[12px] text-zinc-400 hover:text-white transition-colors">
-            @looterchat
+          <a href="https://x.com/DegenLLM" target="_blank" rel="noopener noreferrer" className="text-[12px] text-zinc-400 hover:text-white transition-colors">
+            @DegenLLM
           </a>
           <a href="https://pump.fun/coin/CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors">
             CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump

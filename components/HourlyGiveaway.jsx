@@ -8,34 +8,21 @@ export default function HourlyGiveaway() {
   const [timeLeft, setTimeLeft] = useState({ minutes: 60, seconds: 0 })
   const [giveawayValue, setGiveawayValue] = useState(50)
   const [showModal, setShowModal] = useState(false)
-  const [endTime] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('giveawayEndTime')
-      const now = Date.now()
-      
-      // If we have a stored time and it's still in the future, use it
-      if (stored && parseInt(stored) > now) {
-        return parseInt(stored)
-      }
-      
-      // Otherwise, create a new end time 1 hour from now
-      const newEndTime = now + 60 * 60 * 1000
-      localStorage.setItem('giveawayEndTime', newEndTime.toString())
-      return newEndTime
-    }
-    return Date.now() + 60 * 60 * 1000
-  })
+  
+  // HARDCODED: Set to January 21, 2026 at 00:00:00 UTC (1 hour from now as of deployment)
+  // This will NOT reset on refresh - it's a fixed point in time
+  const FIXED_END_TIME = new Date('2026-01-21T00:00:00Z').getTime()
+  const endTime = FIXED_END_TIME; // Declare the endTime variable
 
   useEffect(() => {
     const calculateTimeAndValue = () => {
       const now = Date.now()
-      const remaining = Math.max(0, Math.floor((endTime - now) / 1000))
+      const remaining = Math.max(0, Math.floor((FIXED_END_TIME - now) / 1000))
       
+      // If timer has ended, show 00:00 and max value
       if (remaining === 0) {
-        localStorage.removeItem('giveawayEndTime')
-        const newEndTime = Date.now() + 60 * 60 * 1000
-        localStorage.setItem('giveawayEndTime', newEndTime.toString())
-        window.location.reload()
+        setTimeLeft({ minutes: 0, seconds: 0 })
+        setGiveawayValue(500)
         return
       }
 
@@ -44,10 +31,10 @@ export default function HourlyGiveaway() {
 
       setTimeLeft({ minutes, seconds })
 
-      // Calculate value: starts at $50, ends at $500
+      // Calculate value: starts at $50, ends at $500 over 1 hour
       const totalDuration = 60 * 60 // 60 minutes in seconds
       const elapsed = totalDuration - remaining
-      const progress = elapsed / totalDuration
+      const progress = Math.min(1, elapsed / totalDuration)
       const baseValue = 50
       const maxValue = 500
       const currentValue = baseValue + (maxValue - baseValue) * progress
@@ -59,7 +46,7 @@ export default function HourlyGiveaway() {
     const interval = setInterval(calculateTimeAndValue, 1000)
 
     return () => clearInterval(interval)
-  }, [endTime])
+  }, [FIXED_END_TIME])
 
   const formatTime = (num) => String(num).padStart(2, "0")
   const formatValue = (val) => `$${val.toFixed(2)}`
