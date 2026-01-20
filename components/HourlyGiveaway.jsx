@@ -235,7 +235,7 @@ export default function HourlyGiveaway() {
                       <div className="relative z-10 h-full w-full rounded-full overflow-hidden border-2 border-[#9333EA]/40 shadow-[0_0_20px_rgba(147,51,234,0.4)]">
                         <Image
                           src="/images/ghost-logo-3-eyes.png"
-                          alt="LOOTCHAT"
+                          alt="Degenetics"
                           width={96}
                           height={96}
                           className="h-full w-full object-cover"

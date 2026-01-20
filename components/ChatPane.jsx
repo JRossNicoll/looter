@@ -12,7 +12,7 @@ function ThinkingMessage({ onPause }) {
       <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full overflow-hidden">
         <Image
           src="/images/ghost-logo-3-eyes.png"
-          alt="LOOTCHAT"
+          alt="Degenetics"
           width={32}
           height={32}
           className="h-full w-full object-contain"
@@ -84,13 +84,13 @@ const ChatPane = forwardRef(function ChatPane(
               <div className="flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full overflow-hidden">
                 <Image
                   src="/images/ghost-logo-3-eyes.png"
-                  alt="LOOTCHAT"
+                  alt="Degenetics"
                   width={80}
                   height={80}
                   className="h-full w-full object-contain"
                 />
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white">LOOTCHAT</h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-white">Degenetics</h1>
             </div>
 
             <div className="mb-4 md:mb-6 w-full max-w-md md:max-w-2xl">
@@ -160,7 +160,7 @@ const ChatPane = forwardRef(function ChatPane(
 
             {/* Terms text - centered at bottom with proper mobile spacing */}
             <p className="text-[10px] md:text-xs text-zinc-600 text-center px-4 max-w-md">
-              By messaging LOOTCHAT, you agree to our{" "}
+              By messaging Degenetics, you agree to our{" "}
               <a href="#" className="text-zinc-500 hover:text-zinc-400 underline">
                 Terms
               </a>{" "}

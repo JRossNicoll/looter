@@ -22,13 +22,13 @@ export default function Header({ createNewChat, sidebarCollapsed, setSidebarOpen
           <div className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden bg-[#9333EA] p-1">
             <Image
               src="/images/ghost-logo-3-eyes.png"
-              alt="LOOTCHAT"
+              alt="Degenetics"
               width={32}
               height={32}
               className="h-full w-full object-contain"
             />
           </div>
-          <div className="text-sm font-bold tracking-wider text-white uppercase">LOOTCHAT</div>
+          <div className="text-sm font-bold tracking-wider text-white uppercase">Degenetics</div>
         </div>
 
         <nav className="hidden md:flex items-center gap-6">

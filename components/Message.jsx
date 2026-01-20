@@ -67,7 +67,7 @@ export default function Message({ role, children, timestamp, responseTime, onReg
           <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#9333EA]/20 to-[#9333EA]/5 overflow-hidden">
             <Image
               src="/images/ghost-logo-3-eyes.png"
-              alt="LOOTCHAT"
+              alt="Degenetics"
               width={32}
               height={32}
               className="h-full w-full object-contain"

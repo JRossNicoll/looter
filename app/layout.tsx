@@ -14,8 +14,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "LOOTCHAT - Cryptocurrency LLM",
-  description: "Ultra-premium AI chat interface",
+  title: "Degenetics - AI-Powered Crypto Intelligence",
+  description: "The most powerful AI platform for cryptocurrency analysis and trading insights",
   generator: "v0.app",
   icons: {
     icon: [

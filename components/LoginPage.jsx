@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { signIn, signInWithGitHub, signInWithSSO } from "../lib/auth"
+import { signIn, signInWithGitHub } from "../lib/auth"
 import Image from "next/image"
 
 export default function LoginPage({ onConnect }) {
@@ -15,19 +15,16 @@ export default function LoginPage({ onConnect }) {
   const handlePhantomConnect = async () => {
     setIsConnecting(true)
     setError(null)
-
     try {
       const { connectPhantomWallet } = await import("../lib/phantom-wallet")
       const address = await connectPhantomWallet()
-
       if (address) {
         onConnect(address)
       } else {
-        setError("Failed to connect. Please install Phantom wallet.")
+        setError("Please install Phantom wallet")
       }
     } catch (err) {
-      console.error("[v0] Error connecting wallet:", err)
-      setError("Connection failed. Please try again.")
+      setError("Connection failed")
     } finally {
       setIsConnecting(false)
     }
@@ -36,7 +33,6 @@ export default function LoginPage({ onConnect }) {
   const handleGitHubSignIn = async () => {
     setIsConnecting(true)
     setError(null)
-
     try {
       const result = await signInWithGitHub()
       if (result.success && result.user) {
@@ -45,27 +41,7 @@ export default function LoginPage({ onConnect }) {
         setError(result.error || "GitHub sign in failed")
       }
     } catch (err) {
-      console.error("[v0] Error with GitHub sign in:", err)
-      setError("GitHub sign in failed. Please try again.")
-    } finally {
-      setIsConnecting(false)
-    }
-  }
-
-  const handleSSOSignIn = async () => {
-    setIsConnecting(true)
-    setError(null)
-
-    try {
-      const result = await signInWithSSO()
-      if (result.success && result.user) {
-        onConnect(result.user.email)
-      } else {
-        setError(result.error || "SSO sign in failed")
-      }
-    } catch (err) {
-      console.error("[v0] Error with SSO sign in:", err)
-      setError("SSO sign in failed. Please try again.")
+      setError("GitHub sign in failed")
     } finally {
       setIsConnecting(false)
     }
@@ -75,7 +51,6 @@ export default function LoginPage({ onConnect }) {
     e.preventDefault()
     setIsConnecting(true)
     setError(null)
-
     try {
       const result = await signIn(email, password)
       if (result.success && result.user) {
@@ -84,8 +59,7 @@ export default function LoginPage({ onConnect }) {
         setError(result.error || "Sign in failed")
       }
     } catch (err) {
-      console.error("[v0] Error with email sign in:", err)
-      setError("Sign in failed. Please try again.")
+      setError("Sign in failed")
     } finally {
       setIsConnecting(false)
     }
@@ -95,7 +69,6 @@ export default function LoginPage({ onConnect }) {
     e.preventDefault()
     setIsConnecting(true)
     setError(null)
-
     try {
       const { signUp } = await import("../lib/auth")
       const result = await signUp(email, password, signUpName)
@@ -105,135 +78,127 @@ export default function LoginPage({ onConnect }) {
         setError(result.error || "Sign up failed")
       }
     } catch (err) {
-      console.error("[v0] Error with sign up:", err)
-      setError("Sign up failed. Please try again.")
+      setError("Sign up failed")
     } finally {
       setIsConnecting(false)
     }
   }
 
+  // Premium animated border card
+  const AnimatedCard = ({ children }) => (
+    <div className="relative group">
+      {/* Animated gradient border - smooth rotation */}
+      <div 
+        className="absolute -inset-[1px] rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(90deg, #06b6d4, #8b5cf6, #06b6d4)',
+          backgroundSize: '200% 100%',
+          animation: 'shimmer 3s ease-in-out infinite',
+        }}
+      />
+      {/* Glow effect */}
+      <div 
+        className="absolute -inset-[1px] rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(90deg, #06b6d4, #8b5cf6, #06b6d4)',
+          backgroundSize: '200% 100%',
+          animation: 'shimmer 3s ease-in-out infinite',
+        }}
+      />
+      {/* Inner card */}
+      <div className="relative bg-[#0a0a0c] rounded-2xl p-7">
+        {children}
+      </div>
+      <style jsx>{`
+        @keyframes shimmer {
+          0%, 100% { background-position: 200% 0; }
+          50% { background-position: 0% 0; }
+        }
+      `}</style>
+    </div>
+  )
+
   if (showSignUp) {
     return (
-      <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4 md:p-6">
-        <div className="w-full max-w-[400px]">
-          <div className="flex justify-center mb-6">
-            <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-[0_0_30px_rgba(147,51,234,0.4)]">
-              <Image
-                src="/images/ghost-logo-3-eyes.png"
-                alt="LOOTCHAT Ghost"
-                width={96}
-                height={96}
-                className="w-full h-full object-cover"
-              />
+      <div className="min-h-screen w-full bg-[#050506] flex items-center justify-center p-4 relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-cyan-500/[0.07] via-violet-500/[0.05] to-cyan-500/[0.07] rounded-full blur-[100px]" />
+        
+        <div className="w-full max-w-[360px] relative z-10">
+          <AnimatedCard>
+            {/* Logo */}
+            <div className="flex justify-center mb-7">
+              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/20">
+                <Image
+                  src="/images/ghost-logo-3-eyes.png"
+                  alt="Degenetics"
+                  width={56}
+                  height={56}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="text-center mb-6">
-            <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: LOOT THE WORLD!</h2>
-          </div>
+            {/* Header */}
+            <div className="text-center mb-6">
+              <h1 className="text-lg font-semibold text-white tracking-tight">Create account</h1>
+              <p className="text-[13px] text-zinc-400 mt-1.5">Join the future of crypto intelligence</p>
+            </div>
 
-          <div className="text-center mb-6 md:mb-8">
-            <h1 className="text-xl md:text-2xl font-semibold text-white mb-2">Create Your Account</h1>
-            <p className="text-xs md:text-sm text-gray-400">Access the LOOTCHAT Platform</p>
-          </div>
-
-          <form onSubmit={handleSignUp} className="space-y-3 md:space-y-4">
-            <div>
-              <label htmlFor="signup-name" className="block text-sm font-medium text-white mb-2">
-                Name
-              </label>
+            {/* Form */}
+            <form onSubmit={handleSignUp} className="space-y-3">
               <input
-                id="signup-name"
                 type="text"
                 value={signUpName}
                 onChange={(e) => setSignUpName(e.target.value)}
-                placeholder="Your name"
+                placeholder="Name"
                 required
-                className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
+                className="w-full h-11 px-4 bg-white/[0.03] border border-white/[0.08] rounded-xl text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
               />
-            </div>
-
-            <div>
-              <label htmlFor="signup-email" className="block text-sm font-medium text-white mb-2">
-                Email
-              </label>
               <input
-                id="signup-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder="Email"
                 required
-                className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
+                className="w-full h-11 px-4 bg-white/[0.03] border border-white/[0.08] rounded-xl text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
               />
-            </div>
-
-            <div>
-              <label htmlFor="signup-password" className="block text-sm font-medium text-white mb-2">
-                Password
-              </label>
               <input
-                id="signup-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Create a password"
+                placeholder="Password"
                 required
                 minLength={6}
-                className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
+                className="w-full h-11 px-4 bg-white/[0.03] border border-white/[0.08] rounded-xl text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
               />
-            </div>
 
-            <button
-              type="submit"
-              disabled={isConnecting}
-              className="w-full px-4 py-3 bg-[#9333EA] text-white rounded-lg text-sm font-semibold hover:bg-[#9333EA]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(147,51,234,0.25)]"
-            >
-              {isConnecting ? "Creating Account..." : "Sign Up"}
-            </button>
-          </form>
+              {error && <p className="text-[11px] text-red-400 text-center py-1">{error}</p>}
 
-          {error && (
-            <div className="mt-4 text-center text-xs md:text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2 md:px-4 md:py-2.5">
-              {error}
-            </div>
-          )}
-
-          <p className="text-center text-xs md:text-sm text-gray-400 mt-4 md:mt-6">
-            Already have an account?{" "}
-            <button
-              onClick={() => setShowSignUp(false)}
-              className="text-[#9333EA] font-semibold hover:text-[#9333EA]/80 transition-colors"
-            >
-              Sign In
-            </button>
-          </p>
-
-          <div className="flex flex-col items-center gap-4 mt-6">
-            <div className="flex items-center justify-center gap-3">
-              <a
-                href="https://x.com/looterchat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
-                aria-label="Follow us on X"
+              <button
+                type="submit"
+                disabled={isConnecting}
+                className="w-full h-11 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-xl text-[13px] font-medium transition-all disabled:opacity-50 shadow-lg shadow-cyan-500/25"
               >
-                <svg
-                  className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#9333EA] transition-colors"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-            </div>
-            <a
-              href="https://pump.fun/coin/CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] text-zinc-400 hover:text-[#9333EA] font-mono break-all px-2 text-center transition-colors underline decoration-dotted"
-            >
-              CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump
+                {isConnecting ? "Creating..." : "Create account"}
+              </button>
+            </form>
+
+            <p className="text-center text-[13px] text-zinc-400 mt-6">
+              Already have an account?{" "}
+              <button onClick={() => setShowSignUp(false)} className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
+                Sign in
+              </button>
+            </p>
+          </AnimatedCard>
+
+          {/* Footer */}
+          <div className="mt-8 flex flex-col items-center gap-2.5">
+            <a href="https://x.com/looterchat" target="_blank" rel="noopener noreferrer" className="text-[12px] text-zinc-400 hover:text-white transition-colors">
+              @looterchat
+            </a>
+            <a href="https://pump.fun/coin/CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors">
+              CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump
             </a>
           </div>
         </div>
@@ -242,156 +207,109 @@ export default function LoginPage({ onConnect }) {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4 md:p-6">
-      <div className="w-full max-w-[400px]">
-        <div className="flex justify-center mb-6">
-          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-[0_0_30px_rgba(147,51,234,0.4)]">
-            <Image
-              src="/images/ghost-logo-3-eyes.png"
-              alt="LOOTCHAT Ghost"
-              width={96}
-              height={96}
-              className="w-full h-full object-cover"
-            />
+    <div className="min-h-screen w-full bg-[#050506] flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-cyan-500/[0.07] via-violet-500/[0.05] to-cyan-500/[0.07] rounded-full blur-[100px]" />
+      
+      <div className="w-full max-w-[360px] relative z-10">
+        <AnimatedCard>
+          {/* Logo */}
+          <div className="flex justify-center mb-7">
+            <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/20">
+              <Image
+                src="/images/ghost-logo-3-eyes.png"
+                alt="Degenetics"
+                width={56}
+                height={56}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="text-center mb-6">
-          <h2 className="text-lg md:text-xl font-bold text-[#9333EA]">LOOTCHAT: LOOT THE WORLD!</h2>
-        </div>
-
-        <div className="space-y-2 md:space-y-3 mb-6">
-          <button
-            onClick={handlePhantomConnect}
-            disabled={isConnecting}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#9333EA] hover:bg-[#9333EA]/90 text-white rounded-lg text-sm font-semibold transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(147,51,234,0.3)]"
-          >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41c2.93 1.18 5 4.05 5 7.41 0 2.08-.8 3.97-2.1 5.39M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z" />
-            </svg>
-            <span>{isConnecting ? "Connecting..." : "Continue with Phantom"}</span>
-          </button>
-
-          <button
-            onClick={handleGitHubSignIn}
-            disabled={isConnecting}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white/5 border border-[#9333EA]/20 hover:bg-white/10 rounded-lg text-sm font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-            <span>Continue with GitHub</span>
-          </button>
-
-          <button
-            onClick={handleSSOSignIn}
-            disabled={isConnecting}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white/5 border border-[#9333EA]/20 hover:bg-white/10 rounded-lg text-sm font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-            <span>Continue with SSO</span>
-          </button>
-        </div>
-
-        <div className="relative mb-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#9333EA]/20"></div>
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-lg font-semibold text-white tracking-tight">Sign in to Degenetics</h1>
+            <p className="text-[13px] text-zinc-400 mt-1.5">AI-powered crypto intelligence</p>
           </div>
-          <div className="relative flex justify-center text-xs">
-            <span className="bg-black px-2 text-gray-500">OR</span>
-          </div>
-        </div>
 
-        <form onSubmit={handleEmailSignIn} className="space-y-3 md:space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
-              Email
-            </label>
+          {/* Primary Actions */}
+          <div className="space-y-2.5">
+            <button
+              onClick={handlePhantomConnect}
+              disabled={isConnecting}
+              className="w-full h-10 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-lg text-[13px] font-medium tracking-wide transition-all disabled:opacity-50 flex items-center justify-center gap-2.5 shadow-lg shadow-cyan-500/20"
+            >
+              <svg className="w-[18px] h-[18px] flex-shrink-0" viewBox="0 0 128 128" fill="none">
+                <path fillRule="evenodd" clipRule="evenodd" d="M55.6416 82.1477C50.8744 89.4525 42.8862 98.6966 32.2568 98.6966C27.232 98.6966 22.4004 96.628 22.4004 87.6424C22.4004 64.7584 53.6445 29.3335 82.6339 29.3335C99.1257 29.3335 105.697 40.7755 105.697 53.7689C105.697 70.4471 94.8739 89.5171 84.1156 89.5171C80.7013 89.5171 79.0264 87.6424 79.0264 84.6688C79.0264 83.8931 79.1552 83.0527 79.4129 82.1477C75.7409 88.4182 68.6546 94.2361 62.0192 94.2361C57.1877 94.2361 54.7397 91.1979 54.7397 86.9314C54.7397 85.3799 55.0618 83.7638 55.6416 82.1477ZM80.6133 53.3182C80.6133 57.1044 78.3795 58.9975 75.8806 58.9975C73.3438 58.9975 71.1479 57.1044 71.1479 53.3182C71.1479 49.532 73.3438 47.6389 75.8806 47.6389C78.3795 47.6389 80.6133 49.532 80.6133 53.3182ZM94.8102 53.3184C94.8102 57.1046 92.5763 58.9977 90.0775 58.9977C87.5407 58.9977 85.3447 57.1046 85.3447 53.3184C85.3447 49.5323 87.5407 47.6392 90.0775 47.6392C92.5763 47.6392 94.8102 49.5323 94.8102 53.3184Z" fill="currentColor"/>
+              </svg>
+              <span>Connect Phantom</span>
+            </button>
+
+            <button
+              onClick={handleGitHubSignIn}
+              disabled={isConnecting}
+              className="w-full h-10 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.08] text-white rounded-lg text-[13px] font-medium tracking-wide transition-all disabled:opacity-50 flex items-center justify-center gap-2.5"
+            >
+              <svg className="w-[18px] h-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+              <span>Continue with GitHub</span>
+            </button>
+          </div>
+
+          {/* Divider */}
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+            <span className="text-[11px] text-zinc-500 uppercase tracking-widest font-medium">or</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+          </div>
+
+          {/* Email Form */}
+          <form onSubmit={handleEmailSignIn} className="space-y-3">
             <input
-              id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder="Email"
               required
-              className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
+              className="w-full h-11 px-4 bg-white/[0.03] border border-white/[0.08] rounded-xl text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
             />
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label htmlFor="password" className="block text-sm font-medium text-white">
-                Password
-              </label>
-              <a href="#" className="text-sm text-[#9333EA] hover:text-[#9333EA]/80 transition-colors font-medium">
-                Forgot Password?
-              </a>
-            </div>
             <input
-              id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Password"
               required
               minLength={6}
-              className="w-full px-4 py-2.5 bg-white/5 border border-[#9333EA]/20 rounded-lg text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9333EA]/60 focus:border-transparent transition-all"
+              className="w-full h-11 px-4 bg-white/[0.03] border border-white/[0.08] rounded-xl text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
             />
-          </div>
 
-          <button
-            type="submit"
-            disabled={isConnecting}
-            className="w-full px-4 py-3 bg-[#9333EA] text-white rounded-lg text-sm font-semibold hover:bg-[#9333EA]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(147,51,234,0.25)]"
-          >
-            {isConnecting ? "Signing In..." : "Sign In"}
-          </button>
-        </form>
+            {error && <p className="text-[11px] text-red-400 text-center py-1">{error}</p>}
 
-        {error && (
-          <div className="mt-4 text-center text-xs md:text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2 md:px-4 md:py-2.5">
-            {error}
-          </div>
-        )}
-
-        <p className="text-center text-xs md:text-sm text-gray-400 mt-4 md:mt-6">
-          Don't have an account?{" "}
-          <button
-            onClick={() => setShowSignUp(true)}
-            className="text-[#9333EA] font-semibold hover:text-[#9333EA]/80 transition-colors"
-          >
-            Sign Up Now
-          </button>
-        </p>
-
-        <div className="flex flex-col items-center gap-4 mt-6">
-          <div className="flex items-center justify-center gap-3">
-            <a
-              href="https://x.com/looterchat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
-              aria-label="Follow us on X"
+            <button
+              type="submit"
+              disabled={isConnecting}
+              className="w-full h-11 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] text-zinc-300 hover:text-white rounded-xl text-[13px] font-medium transition-all disabled:opacity-50"
             >
-              <svg
-                className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#9333EA] transition-colors"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-          </div>
-          <a
-            href="https://pump.fun/coin/CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[11px] text-zinc-400 hover:text-[#9333EA] font-mono break-all px-2 text-center transition-colors underline decoration-dotted"
-          >
-            CaHe3hCAPWxehaJBib9xVTAiydqsHjnx3WX9oCbqpump
+              {isConnecting ? "Signing in..." : "Continue"}
+            </button>
+          </form>
+
+          <p className="text-center text-[13px] text-zinc-400 mt-6">
+            New to Degenetics?{" "}
+            <button onClick={() => setShowSignUp(true)} className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
+              Create account
+            </button>
+          </p>
+        </AnimatedCard>
+
+        {/* Footer */}
+        <div className="mt-8 flex flex-col items-center gap-2.5">
+          <a href="https://x.com/looterchat" target="_blank" rel="noopener noreferrer" className="text-[12px] text-zinc-400 hover:text-white transition-colors">
+            @looterchat
+          </a>
+          <a href="https://pump.fun/coin/CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors">
+            CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump
           </a>
         </div>
       </div>

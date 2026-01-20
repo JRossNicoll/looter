@@ -173,13 +173,13 @@ export default function Sidebar({
             <div className="flex h-6 w-6 items-center justify-center rounded-full overflow-hidden bg-[#9333EA]">
               <Image
                 src="/images/ghost-logo-3-eyes.png"
-                alt="LOOTCHAT"
+                alt="Degenetics"
                 width={24}
                 height={24}
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="text-sm font-semibold text-white">LOOTCHAT</div>
+            <div className="text-sm font-semibold text-white">Degenetics</div>
           </div>
           <div className="ml-auto flex items-center gap-1">
             <SettingsPopover walletAddress={walletAddress} onWalletChange={onWalletChange}>
