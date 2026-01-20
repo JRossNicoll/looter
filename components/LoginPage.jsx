@@ -127,13 +127,13 @@ export default function LoginPage({ onConnect }) {
         <div className="w-full max-w-[360px] relative z-10">
           <AnimatedCard>
             {/* Logo */}
-            <div className="flex justify-center mb-7">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/20">
+            <div className="flex justify-center mb-8">
+              <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/30">
                 <Image
                   src="/images/ghost-logo-3-eyes.png"
                   alt="Degenetics"
-                  width={56}
-                  height={56}
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -214,13 +214,13 @@ export default function LoginPage({ onConnect }) {
       <div className="w-full max-w-[360px] relative z-10">
         <AnimatedCard>
           {/* Logo */}
-          <div className="flex justify-center mb-7">
-            <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/20">
+          <div className="flex justify-center mb-8">
+            <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/30">
               <Image
                 src="/images/ghost-logo-3-eyes.png"
                 alt="Degenetics"
-                width={56}
-                height={56}
+                width={80}
+                height={80}
                 className="w-full h-full object-cover"
               />
             </div>

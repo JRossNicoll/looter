@@ -102,12 +102,12 @@ export default function Sidebar({
         initial={{ width: 240 }}
         animate={{ width: 56 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="z-50 flex h-full shrink-0 flex-col border-r border-white/5 bg-[#0f0f0f]"
+        className="z-50 flex h-full shrink-0 flex-col border-r border-white/5 bg-[#0a0a0c]"
       >
         <div className="flex items-center justify-center border-b border-white/5 px-2 py-3">
           <button
             onClick={() => setSidebarCollapsed(false)}
-            className="rounded-lg p-2 hover:bg-white/5 text-zinc-400 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9333EA] transition-colors"
+            className="rounded-lg p-2 hover:bg-white/5 text-zinc-400 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 transition-colors"
             aria-label="Open sidebar"
             title="Open sidebar"
           >
@@ -118,7 +118,7 @@ export default function Sidebar({
         <div className="flex flex-col items-center gap-3 pt-4">
           <button
             onClick={createNewChat}
-            className="rounded-lg p-2 hover:bg-[#9333EA]/10 text-[#9333EA]/70 hover:text-[#9333EA] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9333EA] transition-colors"
+            className="rounded-lg p-2 hover:bg-cyan-500/10 text-cyan-400/70 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 transition-colors"
             title="New Chat"
           >
             <Plus className="h-5 w-5" />
@@ -128,7 +128,7 @@ export default function Sidebar({
         <div className="mt-auto mb-4 flex flex-col items-center gap-2">
           <SettingsPopover walletAddress={walletAddress} onWalletChange={onWalletChange}>
             <button
-              className="rounded-lg p-2 hover:bg-white/5 text-zinc-400 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9333EA] transition-colors"
+              className="rounded-lg p-2 hover:bg-white/5 text-zinc-400 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 transition-colors"
               title="Settings"
             >
               <Settings className="h-5 w-5" />
@@ -163,20 +163,20 @@ export default function Sidebar({
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30, duration: 0.15 }}
         className={cls(
-          "z-50 flex h-full w-60 shrink-0 flex-col border-r border-white/5 bg-[#0f0f0f]",
+          "z-50 flex h-full w-60 shrink-0 flex-col border-r border-white/5 bg-[#0a0a0c]",
           "fixed inset-y-0 left-0 md:static",
           !open && "md:flex hidden",
         )}
       >
         <div className="flex items-center gap-2 border-b border-white/5 px-3 py-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full overflow-hidden bg-[#9333EA]">
+            <div className="flex h-6 w-6 items-center justify-center rounded-lg overflow-hidden">
               <Image
                 src="/images/ghost-logo-3-eyes.png"
                 alt="Degenetics"
                 width={24}
                 height={24}
-                className="h-full w-full object-contain"
+                className="h-full w-full object-cover"
               />
             </div>
             <div className="text-sm font-semibold text-white">Degenetics</div>
@@ -184,7 +184,7 @@ export default function Sidebar({
           <div className="ml-auto flex items-center gap-1">
             <SettingsPopover walletAddress={walletAddress} onWalletChange={onWalletChange}>
               <button
-                className="rounded-lg p-1 text-zinc-400 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9333EA] transition-colors"
+                className="rounded-lg p-1 text-zinc-400 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 transition-colors"
                 aria-label="Settings"
                 title="Settings"
               >
@@ -194,7 +194,7 @@ export default function Sidebar({
 
             <button
               onClick={() => setSidebarCollapsed(true)}
-              className="hidden md:block rounded-lg p-1 text-zinc-400 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9333EA] transition-colors"
+              className="hidden md:block rounded-lg p-1 text-zinc-400 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 transition-colors"
               aria-label="Collapse sidebar"
               title="Collapse sidebar"
             >
@@ -206,7 +206,7 @@ export default function Sidebar({
                 e.stopPropagation()
                 onClose()
               }}
-              className="md:hidden rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9333EA] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="md:hidden rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Close sidebar"
             >
               <PanelLeftClose className="h-5 w-5" />
@@ -220,7 +220,7 @@ export default function Sidebar({
               e.stopPropagation()
               createNewChat()
             }}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#9333EA] px-3 py-1.5 text-xs font-medium text-white transition-all hover:bg-[#9333EA]/90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9333EA]"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:from-cyan-400 hover:to-blue-500 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 shadow-lg shadow-cyan-500/20"
           >
             <Plus className="h-3.5 w-3.5" /> New Chat
           </button>
@@ -239,7 +239,7 @@ export default function Sidebar({
                     className={cls(
                       "flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-xs transition-colors",
                       selectedId === conv.id
-                        ? "bg-[#9333EA]/10 text-[#9333EA]"
+                        ? "bg-cyan-500/10 text-cyan-400"
                         : "text-zinc-400 hover:bg-white/5 hover:text-white",
                     )}
                   >
@@ -259,11 +259,11 @@ export default function Sidebar({
                   onClick={() => toggleCategory(category.category)}
                   className="flex w-full items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white/5 transition-colors group"
                 >
-                  <category.icon className="h-3.5 w-3.5 text-[#9333EA]" />
-                  <div className="text-xs font-semibold text-[#9333EA] tracking-wide">{category.category}</div>
+                  <category.icon className="h-3.5 w-3.5 text-cyan-400" />
+                  <div className="text-xs font-semibold text-cyan-400 tracking-wide">{category.category}</div>
                   <ChevronDown
                     className={cls(
-                      "h-3.5 w-3.5 ml-auto text-[#9333EA] transition-transform duration-200",
+                      "h-3.5 w-3.5 ml-auto text-cyan-400 transition-transform duration-200",
                       expandedCategories[category.category] ? "rotate-180" : "",
                     )}
                   />
@@ -308,12 +308,12 @@ export default function Sidebar({
           <HourlyGiveaway />
 
           {walletAddress && (
-            <div className="mb-1.5 md:mb-2 rounded-lg border border-[#9333EA]/20 bg-[#9333EA]/5 p-2.5">
+            <div className="mb-1.5 md:mb-2 rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-2.5">
               <div className="flex items-center gap-2 mb-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#9333EA]/20">
-                  <Wallet className="h-3 w-3 text-[#9333EA]" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-500/20">
+                  <Wallet className="h-3 w-3 text-cyan-400" />
                 </div>
-                <div className="text-[10px] font-semibold text-[#9333EA] uppercase tracking-wider">
+                <div className="text-[10px] font-semibold text-cyan-400 uppercase tracking-wider">
                   Wallet Connected
                 </div>
               </div>
@@ -324,10 +324,10 @@ export default function Sidebar({
                 </div>
                 <button
                   onClick={handleCopyWallet}
-                  className="flex h-7 w-7 items-center justify-center rounded-md bg-black/30 hover:bg-black/50 text-zinc-400 hover:text-[#9333EA] transition-colors"
+                  className="flex h-7 w-7 items-center justify-center rounded-md bg-black/30 hover:bg-black/50 text-zinc-400 hover:text-cyan-400 transition-colors"
                   title="Copy address"
                 >
-                  {copiedWallet ? <Check className="h-3 w-3 text-[#9333EA]" /> : <Copy className="h-3 w-3" />}
+                  {copiedWallet ? <Check className="h-3 w-3 text-cyan-400" /> : <Copy className="h-3 w-3" />}
                 </button>
               </div>
 
@@ -344,7 +344,7 @@ export default function Sidebar({
           {/* Responsive Text */}
           <div className="text-[10px] md:text-xs text-center text-zinc-500 mb-1.5 md:mb-2">
             Don't have an account?{" "}
-            <a href="#" className="text-[#9333EA] hover:underline font-medium">
+            <a href="#" className="text-cyan-400 hover:underline font-medium">
               Sign Up Now
             </a>
           </div>
@@ -355,11 +355,11 @@ export default function Sidebar({
               href="https://x.com/looterchat"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#9333EA]/40 transition-all group"
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/40 transition-all group"
               aria-label="Follow us on X"
             >
               <svg
-                className="w-3.5 h-3.5 text-white group-hover:text-[#9333EA] transition-colors"
+                className="w-3.5 h-3.5 text-white group-hover:text-cyan-400 transition-colors"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -383,7 +383,7 @@ export default function Sidebar({
             href="https://pump.fun/coin/CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1.5 text-[9px] text-zinc-400 hover:text-[#9333EA] font-mono break-all text-center px-1 block transition-colors underline decoration-dotted"
+            className="mt-1.5 text-[9px] text-zinc-400 hover:text-cyan-400 font-mono break-all text-center px-1 block transition-colors underline decoration-dotted"
           >
             CE6mKngfsP21SViu2iMuUJTmbR22jSnqJQ9PSXxwpump
           </a>

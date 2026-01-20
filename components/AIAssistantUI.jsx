@@ -377,12 +377,12 @@ export default function AIAssistantUI() {
   }
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-black">
-      <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.015]">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white to-transparent h-[2px] animate-[scanline_8s_linear_infinite]" />
+    <div className="h-screen w-full overflow-hidden bg-[#050506]">
+      <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.01]">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500 to-transparent h-[1px] animate-[scanline_10s_linear_infinite]" />
       </div>
 
-      <div className="h-full w-full bg-black text-foreground relative z-10">
+      <div className="h-full w-full bg-[#050506] text-foreground relative z-10">
         <div className="flex h-full w-full">
           <Sidebar
             open={sidebarOpen}
@@ -419,11 +419,11 @@ export default function AIAssistantUI() {
             onStartPrompt={handleStartPrompt}
           />
 
-          <main className="relative flex min-w-0 flex-1 flex-col bg-black">
+          <main className="relative flex min-w-0 flex-1 flex-col bg-[#050506]">
             {!sidebarOpen && (
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="md:hidden fixed top-4 left-4 z-50 inline-flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 transition-all"
+                className="md:hidden fixed top-4 left-4 z-50 inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all"
                 aria-label="Open menu"
               >
                 <Menu className="h-5 w-5" />

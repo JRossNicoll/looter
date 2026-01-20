@@ -76,26 +76,27 @@ const ChatPane = forwardRef(function ChatPane(
 
   return (
     <div className="flex h-full min-h-0 flex-1 flex-col">
-      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800">
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 bg-[#050506]">
         {messages.length === 0 ? (
-          <div className="flex h-full flex-col items-center justify-center px-4 py-6 md:px-6">
+          <div className="flex h-full flex-col items-center justify-center px-4 py-6 md:px-6 bg-[#050506]">
             {/* Logo section - centered */}
-            <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-              <div className="flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full overflow-hidden">
+            <div className="flex flex-col items-center gap-4 mb-6 md:mb-8">
+              <div className="flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/20">
                 <Image
                   src="/images/ghost-logo-3-eyes.png"
                   alt="Degenetics"
-                  width={80}
-                  height={80}
-                  className="h-full w-full object-contain"
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white">Degenetics</h1>
+              <h1 className="text-2xl md:text-4xl font-semibold text-white tracking-tight">Degenetics</h1>
+              <p className="text-sm text-zinc-500">AI-powered crypto intelligence</p>
             </div>
 
             <div className="mb-4 md:mb-6 w-full max-w-md md:max-w-2xl">
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 pb-3 border-b border-zinc-800">
-                <button className="flex items-center justify-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-3 md:px-5 h-11 text-xs md:text-sm text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 transition-all flex-shrink-0">
+              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 pb-4 border-b border-white/[0.06]">
+                <button className="flex items-center justify-center gap-2 rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 md:px-5 h-10 text-xs md:text-sm text-zinc-300 hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all flex-shrink-0">
                   <svg
                     className="h-4 w-4 flex-shrink-0"
                     fill="none"
@@ -111,7 +112,7 @@ const ChatPane = forwardRef(function ChatPane(
                   </svg>
                   <span className="whitespace-nowrap">DeepSearch</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-3 md:px-5 h-11 text-xs md:text-sm text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 transition-all flex-shrink-0">
+                <button className="flex items-center justify-center gap-2 rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 md:px-5 h-10 text-xs md:text-sm text-zinc-300 hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all flex-shrink-0">
                   <svg
                     className="h-4 w-4 flex-shrink-0"
                     fill="none"
@@ -123,7 +124,7 @@ const ChatPane = forwardRef(function ChatPane(
                   </svg>
                   <span className="whitespace-nowrap">Solana Analysis</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-3 md:px-5 h-11 text-xs md:text-sm text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 transition-all flex-shrink-0">
+                <button className="flex items-center justify-center gap-2 rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 md:px-5 h-10 text-xs md:text-sm text-zinc-300 hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all flex-shrink-0">
                   <svg
                     className="h-4 w-4 flex-shrink-0"
                     fill="none"
@@ -139,7 +140,7 @@ const ChatPane = forwardRef(function ChatPane(
                   </svg>
                   <span className="whitespace-nowrap">Market Trends</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-3 md:px-5 h-11 text-xs md:text-sm text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 transition-all flex-shrink-0">
+                <button className="flex items-center justify-center gap-2 rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 md:px-5 h-10 text-xs md:text-sm text-zinc-300 hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all flex-shrink-0">
                   <svg
                     className="h-4 w-4 flex-shrink-0"
                     fill="none"
@@ -159,19 +160,19 @@ const ChatPane = forwardRef(function ChatPane(
             </div>
 
             {/* Terms text - centered at bottom with proper mobile spacing */}
-            <p className="text-[10px] md:text-xs text-zinc-600 text-center px-4 max-w-md">
+            <p className="text-[10px] md:text-xs text-zinc-500 text-center px-4 max-w-md">
               By messaging Degenetics, you agree to our{" "}
-              <a href="#" className="text-zinc-500 hover:text-zinc-400 underline">
+              <a href="#" className="text-cyan-400 hover:text-cyan-300 underline decoration-dotted">
                 Terms
               </a>{" "}
               and{" "}
-              <a href="#" className="text-zinc-500 hover:text-zinc-400 underline">
+              <a href="#" className="text-cyan-400 hover:text-cyan-300 underline decoration-dotted">
                 Privacy Policy
               </a>
             </p>
           </div>
         ) : (
-          <div className="mx-auto max-w-4xl px-4 md:px-6 py-6 md:py-8 space-y-6 md:space-y-8">
+          <div className="mx-auto max-w-4xl px-4 md:px-6 py-6 md:py-8 space-y-6 md:space-y-8 bg-[#050506]">
             {messages.map((m) => (
               <div key={m.id}>
                 {editingId === m.id ? (

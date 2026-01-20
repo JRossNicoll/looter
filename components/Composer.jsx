@@ -43,12 +43,12 @@ const Composer = forwardRef(function Composer({ onSend, busy, hasMessages }, ref
   }
 
   return (
-    <div className="border-t border-zinc-800/50 bg-[#0f0f0f] px-3 py-4 md:px-4 md:py-6">
+    <div className="border-t border-white/[0.06] bg-[#050506] px-3 py-4 md:px-4 md:py-6">
       <div className="mx-auto max-w-4xl">
         <div
           className={cls(
-            "flex items-center gap-2 md:gap-3 rounded-3xl border bg-[#1a1a1a] px-3 py-2.5 md:px-4 md:py-3 transition-all",
-            isFocused ? "border-zinc-700 shadow-lg shadow-zinc-900/50" : "border-zinc-800",
+            "flex items-center gap-2 md:gap-3 rounded-2xl border bg-white/[0.03] px-3 py-2.5 md:px-4 md:py-3 transition-all",
+            isFocused ? "border-cyan-500/30 shadow-lg shadow-cyan-500/10" : "border-white/[0.08]",
           )}
         >
           <button
@@ -94,14 +94,14 @@ const Composer = forwardRef(function Composer({ onSend, busy, hasMessages }, ref
               <button
                 onClick={handleSend}
                 disabled={sending}
-                className="inline-flex items-center justify-center rounded-full bg-[#F3BA2F] p-2 md:p-2.5 text-black hover:bg-[#F3BA2F]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 p-2 md:p-2.5 text-white hover:from-cyan-400 hover:to-blue-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/20"
                 title="Send message"
               >
                 <ArrowUp className="h-4 w-4 md:h-5 md:w-5" />
               </button>
             ) : (
               <button
-                className="inline-flex items-center justify-center rounded-full bg-white p-2 md:p-2.5 text-black hover:bg-zinc-200 transition-colors"
+                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/10 p-2 md:p-2.5 text-zinc-400 hover:bg-white/20 hover:text-white transition-colors"
                 title="Voice input"
               >
                 <Mic className="h-4 w-4 md:h-5 md:w-5" />
