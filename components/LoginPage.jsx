@@ -114,6 +114,10 @@ export default function LoginPage({ onConnect }) {
           0%, 100% { background-position: 200% 0; }
           50% { background-position: 0% 0; }
         }
+        @keyframes borderGlow {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
       `}</style>
     </div>
   )
@@ -128,14 +132,33 @@ export default function LoginPage({ onConnect }) {
           <AnimatedCard>
             {/* Logo */}
             <div className="flex justify-center mb-8">
-              <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/30">
-                <Image
-                  src="/images/ghost-logo-3-eyes.png"
-                  alt="Degenetics"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover"
+              <div className="relative group">
+                {/* Animated ring border */}
+                <div 
+                  className="absolute -inset-[2px] rounded-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: 'linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4)',
+                    backgroundSize: '300% 300%',
+                    animation: 'borderGlow 4s ease infinite',
+                  }}
                 />
+                {/* Soft glow */}
+                <div 
+                  className="absolute -inset-[2px] rounded-2xl blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                  style={{
+                    background: 'linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6)',
+                  }}
+                />
+                {/* Logo container */}
+                <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-[#0a0a0c] p-1">
+                  <Image
+                    src="/images/ghost-logo-3-eyes.png"
+                    alt="Degenetics"
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
               </div>
             </div>
 
@@ -215,14 +238,33 @@ export default function LoginPage({ onConnect }) {
         <AnimatedCard>
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/30">
-              <Image
-                src="/images/ghost-logo-3-eyes.png"
-                alt="Degenetics"
-                width={80}
-                height={80}
-                className="w-full h-full object-cover"
+            <div className="relative group">
+              {/* Animated ring border */}
+              <div 
+                className="absolute -inset-[2px] rounded-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: 'linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4)',
+                  backgroundSize: '300% 300%',
+                  animation: 'borderGlow 4s ease infinite',
+                }}
               />
+              {/* Soft glow */}
+              <div 
+                className="absolute -inset-[2px] rounded-2xl blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                style={{
+                  background: 'linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6)',
+                }}
+              />
+              {/* Logo container */}
+              <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-[#0a0a0c] p-1">
+                <Image
+                  src="/images/ghost-logo-3-eyes.png"
+                  alt="Degenetics"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
             </div>
           </div>
 

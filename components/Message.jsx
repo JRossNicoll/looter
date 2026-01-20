@@ -64,7 +64,7 @@ export default function Message({ role, children, timestamp, responseTime, onReg
 
       <div className={cls("flex gap-3", isUser ? "justify-end" : "justify-start")}>
         {!isUser && (
-          <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#9333EA]/20 to-[#9333EA]/5 overflow-hidden">
+          <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/5 overflow-hidden">
             <Image
               src="/images/ghost-logo-3-eyes.png"
               alt="Degenetics"
@@ -111,7 +111,7 @@ export default function Message({ role, children, timestamp, responseTime, onReg
                 onClick={handleLike}
                 className={cls(
                   "rounded p-1.5 hover:bg-zinc-800 transition-colors",
-                  liked === "up" ? "text-[#9333EA]" : "hover:text-zinc-300",
+                  liked === "up" ? "text-cyan-400" : "hover:text-zinc-300",
                 )}
                 title="Helpful"
               >
