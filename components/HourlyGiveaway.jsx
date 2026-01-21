@@ -1,35 +1,66 @@
 "use client"
-import { useState, useEffect } from "react"
-import { Clock, TrendingUp, X, Ticket, Sparkles } from 'lucide-react'
+import { useState, useEffect, useRef } from "react"
+import { Clock, TrendingUp, X, Ticket, Sparkles, Gift } from 'lucide-react'
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
+// Fixed constants outside component to avoid re-creation
+const TOTAL_DURATION = 59 * 60 // 59 minutes in seconds
+const BASE_VALUE = 44
+const INCREMENT_PER_2_MIN = 20
+
+// Fixed end time stored in localStorage key
+const STORAGE_KEY = 'degenetics_giveaway_end_time'
+
 export default function HourlyGiveaway() {
   const [timeLeft, setTimeLeft] = useState({ minutes: 59, seconds: 0 })
-  const [giveawayValue, setGiveawayValue] = useState(44)
+  const [giveawayValue, setGiveawayValue] = useState(BASE_VALUE)
   const [showModal, setShowModal] = useState(false)
-  
-  // HARDCODED: Fixed end time - January 22, 2026 at 23:59:00 UTC  
-  // This will NOT reset on refresh - it's a fixed point in time
-  const FIXED_END_TIME = new Date('2026-01-22T23:59:00Z').getTime()
-  const TOTAL_DURATION = 59 * 60 // 59 minutes in seconds
-  const BASE_VALUE = 44
-  const INCREMENT_PER_2_MIN = 20 // $20 increase every 2 minutes
+  const [endTime, setEndTime] = useState(null)
 
   useEffect(() => {
+    // Get or set the fixed end time from localStorage
+    let storedEndTime = null
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) {
+        storedEndTime = parseInt(stored, 10)
+        // Check if stored time is still valid (not expired)
+        if (storedEndTime <= Date.now()) {
+          // Reset to 59 minutes from now
+          storedEndTime = Date.now() + (59 * 60 * 1000)
+          localStorage.setItem(STORAGE_KEY, storedEndTime.toString())
+        }
+      } else {
+        // First time - set 59 minutes from now
+        storedEndTime = Date.now() + (59 * 60 * 1000)
+        localStorage.setItem(STORAGE_KEY, storedEndTime.toString())
+      }
+    } catch {
+      storedEndTime = Date.now() + (59 * 60 * 1000)
+    }
+    setEndTime(storedEndTime)
+  }, [])
+
+  useEffect(() => {
+    if (!endTime) return
+
     const calculateTimeAndValue = () => {
       const now = Date.now()
-      const remaining = Math.max(0, Math.floor((FIXED_END_TIME - now) / 1000))
+      let remaining = Math.max(0, Math.floor((endTime - now) / 1000))
       
-      // Cap at 59 minutes max
-      const cappedRemaining = Math.min(remaining, TOTAL_DURATION)
-      
-      if (cappedRemaining === 0) {
-        setTimeLeft({ minutes: 0, seconds: 0 })
-        // Max value after 59 minutes: $44 + ($20 * 29 two-minute intervals) = $624
-        setGiveawayValue(BASE_VALUE + (INCREMENT_PER_2_MIN * 29))
-        return
+      // If timer expired, reset to 59 minutes and update localStorage
+      if (remaining === 0) {
+        const newEndTime = now + (59 * 60 * 1000)
+        setEndTime(newEndTime)
+        try {
+          localStorage.setItem(STORAGE_KEY, newEndTime.toString())
+        } catch {}
+        remaining = 59 * 60
       }
+      
+      // Cap at 59 minutes max display
+      const cappedRemaining = Math.min(remaining, TOTAL_DURATION)
 
       const minutes = Math.floor(cappedRemaining / 60)
       const seconds = cappedRemaining % 60
@@ -38,10 +69,9 @@ export default function HourlyGiveaway() {
 
       // Calculate value: $20 increase every 2 minutes, incrementally
       const elapsed = TOTAL_DURATION - cappedRemaining
-      const twoMinuteIntervals = Math.floor(elapsed / 120) // How many full 2-minute intervals have passed
-      const progressInCurrentInterval = (elapsed % 120) / 120 // Progress within current 2-min interval
+      const twoMinuteIntervals = Math.floor(elapsed / 120)
+      const progressInCurrentInterval = (elapsed % 120) / 120
       
-      // Base value + completed intervals + incremental progress to next $20
       const currentValue = BASE_VALUE + 
         (twoMinuteIntervals * INCREMENT_PER_2_MIN) + 
         (progressInCurrentInterval * INCREMENT_PER_2_MIN)
@@ -53,61 +83,145 @@ export default function HourlyGiveaway() {
     const interval = setInterval(calculateTimeAndValue, 1000)
 
     return () => clearInterval(interval)
-  }, [FIXED_END_TIME])
+  }, [endTime])
 
   const formatTime = (num) => String(num).padStart(2, "0")
   const formatValue = (val) => `$${val.toFixed(2)}`
 
+  // Calculate progress percentage
+  const progressPercent = ((TOTAL_DURATION - (timeLeft.minutes * 60 + timeLeft.seconds)) / TOTAL_DURATION) * 100
+
   return (
     <>
-      {/* Compact Giveaway Card */}
-      <div className="rounded-lg border border-white/[0.04] bg-white/[0.02] p-2.5">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-3 w-3 text-cyan-500" />
-            <span className="text-[10px] font-medium text-zinc-400 uppercase tracking-wider">Giveaway</span>
+      {/* Enhanced Giveaway Card with Animated Border */}
+      <div className="relative group">
+        {/* Animated gradient border */}
+        <div 
+          className="absolute -inset-[1px] rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 blur-[0.5px]"
+          style={{
+            background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4)',
+            backgroundSize: '300% 100%',
+            animation: 'gradientShift 3s ease infinite',
+          }}
+        />
+        
+        {/* Soft outer glow */}
+        <div 
+          className="absolute -inset-[2px] rounded-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 blur-md"
+          style={{
+            background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4)',
+            backgroundSize: '300% 100%',
+            animation: 'gradientShift 3s ease infinite',
+          }}
+        />
+        
+        {/* Card content */}
+        <div className="relative rounded-xl bg-[#0a0a0c] p-4">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2.5">
+              <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/10">
+                <Gift className="h-4.5 w-4.5 text-cyan-400" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[13px] font-bold text-white uppercase tracking-wider leading-tight">Giveaway</span>
+                <span className="text-[9px] text-zinc-500 leading-tight">Launch Week Special</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[10px] font-semibold text-emerald-400 uppercase tracking-wide">Live</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <TrendingUp className="h-3 w-3 text-emerald-500" />
-          </div>
-        </div>
 
-        {/* Timer and Value Row */}
-        <div className="flex items-center gap-2 mb-2">
-          {/* Timer */}
-          <div className="flex-1 flex items-center justify-center gap-0.5 rounded-md bg-black/40 px-2 py-1.5">
-            <span className="text-sm font-mono font-semibold text-white">{formatTime(timeLeft.minutes)}</span>
-            <span className="text-sm font-mono text-zinc-600">:</span>
-            <span className="text-sm font-mono font-semibold text-white">{formatTime(timeLeft.seconds)}</span>
+          {/* Prize Pool Label */}
+          <div className="text-center mb-2">
+            <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Current Prize Pool</span>
           </div>
-          
-          {/* Value */}
-          <div className="flex-1 flex items-center justify-center rounded-md bg-black/40 px-2 py-1.5">
-            <span className="text-sm font-mono font-semibold text-cyan-400">{formatValue(giveawayValue)}</span>
+
+          {/* Value Display - Prominent */}
+          <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20">
+              <Sparkles className="h-5 w-5 text-cyan-400" />
+              <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                {formatValue(giveawayValue)}
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Progress Bar */}
-        <div className="h-0.5 rounded-full bg-black/40 overflow-hidden mb-2">
-          <motion.div
-            className="h-full bg-gradient-to-r from-cyan-500 to-emerald-500"
-            initial={{ width: "0%" }}
-            animate={{
-              width: `${((60 - timeLeft.minutes) / 60) * 100}%`,
-            }}
-            transition={{ duration: 0.5 }}
-          />
-        </div>
+          {/* Timer Label */}
+          <div className="text-center mb-2">
+            <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Time Remaining</span>
+          </div>
 
-        {/* Enter Button */}
-        <button
-          onClick={() => setShowModal(true)}
-          className="w-full rounded-md bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 hover:border-cyan-500/40 px-3 py-1.5 text-[11px] font-medium text-cyan-400 transition-all active:scale-[0.98]"
-        >
-          Enter Giveaway
-        </button>
+          {/* Timer Display - Larger */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center rounded-xl bg-black/60 border border-white/[0.06] px-4 py-3">
+                <span className="text-3xl font-mono font-bold text-white tracking-wider">
+                  {formatTime(timeLeft.minutes)}
+                </span>
+              </div>
+              <span className="text-[9px] text-zinc-600 mt-1">MIN</span>
+            </div>
+            <span className="text-2xl font-mono text-cyan-500 animate-pulse mb-4">:</span>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center rounded-xl bg-black/60 border border-white/[0.06] px-4 py-3">
+                <span className="text-3xl font-mono font-bold text-white tracking-wider">
+                  {formatTime(timeLeft.seconds)}
+                </span>
+              </div>
+              <span className="text-[9px] text-zinc-600 mt-1">SEC</span>
+            </div>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="mb-4">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[9px] text-zinc-600">Prize increasing...</span>
+              <span className="text-[9px] text-cyan-400">{progressPercent.toFixed(0)}%</span>
+            </div>
+            <div className="h-2 rounded-full bg-black/60 border border-white/[0.04] overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500"
+                style={{ width: `${progressPercent}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-2 gap-2 mb-4">
+            <div className="rounded-lg bg-black/40 border border-white/[0.04] p-2.5 text-center">
+              <span className="text-[9px] text-zinc-600 block">Starting</span>
+              <span className="text-xs font-semibold text-white">$44.00</span>
+            </div>
+            <div className="rounded-lg bg-black/40 border border-white/[0.04] p-2.5 text-center">
+              <span className="text-[9px] text-zinc-600 block">Max Prize</span>
+              <span className="text-xs font-semibold text-cyan-400">$634.00</span>
+            </div>
+          </div>
+
+          {/* Enter Button */}
+          <button
+            onClick={() => setShowModal(true)}
+            className="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all active:scale-[0.98] shadow-lg shadow-cyan-500/25"
+          >
+            Enter Giveaway
+          </button>
+
+          {/* Fine print */}
+          <p className="text-[10px] text-zinc-500 text-center mt-3">Hold $DGEN to participate</p>
+        </div>
       </div>
+
+      {/* CSS for gradient animation */}
+      <style jsx>{`
+        @keyframes gradientShift {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+      `}</style>
 
       {/* Modal */}
       <AnimatePresence>

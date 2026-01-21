@@ -169,105 +169,92 @@ export default function Sidebar({
         )}
       >
         {/* Header */}
-        <div className="flex items-center gap-2.5 border-b border-white/[0.04] px-3 py-2.5">
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-cyan-500/20 to-blue-600/20 p-0.5">
-              <Image
-                src="/images/ghost-logo-3-eyes.png"
-                alt="Degenetics"
-                width={28}
-                height={28}
-                className="h-full w-full object-cover rounded-md"
-              />
+        <div className="px-3 py-3 border-b border-white/[0.04]">
+          <div className="flex items-center justify-between">
+            {/* Logo and Brand */}
+            <div className="flex items-center gap-2.5">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-lg bg-cyan-500/30 blur-md" />
+                <div className="relative flex h-9 w-9 items-center justify-center rounded-lg overflow-hidden border border-white/[0.1] bg-[#0a0a0c]">
+                  <Image
+                    src="/images/ghost-logo-3-eyes.png"
+                    alt="Degenetics"
+                    width={36}
+                    height={36}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[14px] font-bold text-white leading-tight">Degenetics</span>
+                <span className="text-[9px] text-zinc-500 uppercase tracking-wider leading-tight">AI Assistant</span>
+              </div>
             </div>
-            <span className="text-[13px] font-semibold text-white tracking-tight">Degenetics</span>
-          </div>
-          <div className="ml-auto flex items-center gap-0.5">
-            <SettingsPopover walletAddress={walletAddress} onWalletChange={onWalletChange}>
+            
+            {/* Action buttons */}
+            <div className="flex items-center">
+              <SettingsPopover walletAddress={walletAddress} onWalletChange={onWalletChange}>
+                <button
+                  className="rounded-lg p-1.5 text-zinc-500 hover:bg-white/[0.06] hover:text-cyan-400 transition-all"
+                  aria-label="Settings"
+                  title="Settings"
+                >
+                  <Settings className="h-4 w-4" />
+                </button>
+              </SettingsPopover>
+
               <button
-                className="rounded-md p-1.5 text-zinc-500 hover:bg-white/[0.04] hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500/50 transition-all"
-                aria-label="Settings"
-                title="Settings"
+                onClick={() => setSidebarCollapsed(true)}
+                className="hidden md:flex rounded-lg p-1.5 text-zinc-500 hover:bg-white/[0.06] hover:text-cyan-400 transition-all"
+                aria-label="Collapse sidebar"
+                title="Collapse sidebar"
               >
-                <Settings className="h-3.5 w-3.5" />
+                <PanelLeftClose className="h-4 w-4" />
               </button>
-            </SettingsPopover>
 
-            <button
-              onClick={() => setSidebarCollapsed(true)}
-              className="hidden md:block rounded-md p-1.5 text-zinc-500 hover:bg-white/[0.04] hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500/50 transition-all"
-              aria-label="Collapse sidebar"
-              title="Collapse sidebar"
-            >
-              <PanelLeftClose className="h-3.5 w-3.5" />
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                onClose()
-              }}
-              className="md:hidden rounded-md p-2 text-zinc-500 hover:bg-white/[0.04] hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500/50 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label="Close sidebar"
-            >
-              <PanelLeftClose className="h-4 w-4" />
-            </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onClose()
+                }}
+                className="md:hidden rounded-lg p-1.5 text-zinc-500 hover:bg-white/[0.06] hover:text-cyan-400 transition-all"
+                aria-label="Close sidebar"
+              >
+                <PanelLeftClose className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* New Chat Button */}
-        <div className="px-2.5 pt-2.5">
+        <div className="px-3 py-3">
           <button
             onClick={(e) => {
               e.stopPropagation()
               createNewChat()
             }}
-            className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-3 py-2 text-[12px] font-medium text-white transition-all hover:from-cyan-400 hover:to-blue-500 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/50 shadow-lg shadow-cyan-500/10"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 text-[13px] font-semibold text-white transition-all hover:from-cyan-400 hover:to-blue-500 active:scale-[0.98] shadow-lg shadow-cyan-500/25"
           >
-            <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+            <Plus className="h-4 w-4" strokeWidth={2.5} />
             <span>New Chat</span>
           </button>
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-2.5 py-3 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10">
-          {/* Recent Conversations */}
-          {conversations.length > 0 && (
-            <div className="mb-4">
-              <div className="px-1.5 py-1 text-[10px] font-medium text-zinc-600 uppercase tracking-widest">Recent</div>
-              <div className="space-y-0.5 mt-1">
-                {conversations.slice(0, 5).map((conv) => (
-                  <button
-                    key={conv.id}
-                    onClick={() => onSelect(conv.id)}
-                    className={cls(
-                      "flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[12px] transition-all",
-                      selectedId === conv.id
-                        ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                        : "text-zinc-500 hover:bg-white/[0.03] hover:text-zinc-300 border border-transparent",
-                    )}
-                  >
-                    <MessageSquare className="h-3 w-3 shrink-0" />
-                    <span className="truncate">{conv.title}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
+        <div className="flex-1 overflow-y-auto px-3 py-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10">
           {/* Prompt Categories */}
-          <div className="space-y-1">
+          <div className="space-y-0.5">
             {SAMPLE_PROMPTS.map((category) => (
               <div key={category.category}>
                 <button
                   onClick={() => toggleCategory(category.category)}
-                  className="flex w-full items-center gap-2 px-1.5 py-1.5 rounded-md hover:bg-white/[0.03] transition-all group"
+                  className="flex w-full items-center gap-2.5 px-2 py-2 rounded-lg hover:bg-white/[0.04] transition-all group"
                 >
-                  <category.icon className="h-3.5 w-3.5 text-cyan-500" />
-                  <span className="text-[12px] font-medium text-zinc-300 tracking-tight">{category.category}</span>
+                  <category.icon className="h-4 w-4 text-cyan-500" />
+                  <span className="text-[12px] font-semibold text-zinc-300">{category.category}</span>
                   <ChevronRight
                     className={cls(
-                      "h-3 w-3 ml-auto text-zinc-600 transition-transform duration-200",
+                      "h-3.5 w-3.5 ml-auto text-zinc-600 transition-transform duration-200",
                       expandedCategories[category.category] ? "rotate-90" : "",
                     )}
                   />
@@ -282,7 +269,7 @@ export default function Sidebar({
                       transition={{ duration: 0.15, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="space-y-0.5 pt-1 pl-5">
+                      <div className="space-y-0.5 py-1 pl-6 pr-1">
                         {category.prompts.map((prompt, idx) => (
                           <button
                             key={idx}
@@ -292,7 +279,7 @@ export default function Sidebar({
                                 onStartPrompt?.(prompt)
                               }, 100)
                             }}
-                            className="flex w-full items-start rounded-md px-2 py-1.5 text-left text-[11px] text-zinc-500 hover:bg-white/[0.03] hover:text-zinc-300 transition-all leading-relaxed"
+                            className="flex w-full items-start rounded-md px-2.5 py-1.5 text-left text-[11px] text-zinc-500 hover:bg-white/[0.04] hover:text-zinc-300 transition-all leading-relaxed"
                           >
                             <span className="line-clamp-2">{prompt}</span>
                           </button>
@@ -307,77 +294,107 @@ export default function Sidebar({
         </div>
 
         {/* Footer Section */}
-        <div className="mt-auto border-t border-white/[0.04] px-2.5 py-2.5 space-y-2">
+        <div className="mt-auto border-t border-white/[0.04] px-3 py-3 space-y-3">
           {/* Hourly Giveaway */}
           <HourlyGiveaway />
 
           {/* Wallet Section */}
           {walletAddress && (
-            <div className="rounded-lg border border-cyan-500/10 bg-cyan-500/[0.03] p-2.5">
-              <div className="flex items-center gap-1.5 mb-2">
-                <Wallet className="h-3 w-3 text-cyan-500" />
-                <span className="text-[10px] font-medium text-cyan-500 uppercase tracking-wider">Connected</span>
+            <div className="rounded-xl border border-cyan-500/10 bg-cyan-500/[0.03] p-3">
+              <div className="flex items-center gap-2 mb-2">
+                <Wallet className="h-3.5 w-3.5 text-cyan-500" />
+                <span className="text-[10px] font-semibold text-cyan-500 uppercase tracking-wider">Connected</span>
               </div>
 
-              <div className="flex items-center gap-1.5 mb-2">
-                <div className="flex-1 rounded-md bg-black/40 px-2 py-1.5">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="flex-1 rounded-lg bg-black/40 px-2.5 py-2">
                   <span className="text-[11px] font-mono text-zinc-400">{formatWalletAddress(walletAddress)}</span>
                 </div>
                 <button
                   onClick={handleCopyWallet}
-                  className="flex h-7 w-7 items-center justify-center rounded-md bg-black/40 hover:bg-black/60 text-zinc-500 hover:text-cyan-400 transition-all"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-black/40 hover:bg-black/60 text-zinc-500 hover:text-cyan-400 transition-all"
                   title="Copy address"
                 >
-                  {copiedWallet ? <Check className="h-3 w-3 text-cyan-400" /> : <Copy className="h-3 w-3" />}
+                  {copiedWallet ? <Check className="h-3.5 w-3.5 text-cyan-400" /> : <Copy className="h-3.5 w-3.5" />}
                 </button>
               </div>
 
               <button
                 onClick={handleDisconnectWallet}
-                className="flex w-full items-center justify-center gap-1.5 rounded-md bg-black/40 hover:bg-red-500/10 px-2 py-1.5 text-[10px] font-medium text-zinc-500 hover:text-red-400 transition-all"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-black/40 hover:bg-red-500/10 px-3 py-2 text-[10px] font-medium text-zinc-500 hover:text-red-400 transition-all"
               >
-                <LogOut className="h-3 w-3" />
+                <LogOut className="h-3.5 w-3.5" />
                 <span>Disconnect</span>
               </button>
             </div>
           )}
 
           {/* Sign Up Link */}
-          <p className="text-[10px] text-center text-zinc-600">
+          <p className="text-[10px] text-center text-zinc-500">
             Don't have an account?{" "}
-            <a href="#" className="text-cyan-500 hover:text-cyan-400 font-medium transition-colors">
+            <a href="#" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
               Sign Up Now
             </a>
           </p>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-1.5">
+          {/* Social Links with Animated Borders */}
+          <div className="flex items-center gap-2">
+            {/* X Link */}
             <a
-              href="https://x.com/DegenLLM"
+              href="https://x.com/degeneticsGPT"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 items-center justify-center rounded-md bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] hover:border-cyan-500/20 transition-all group"
+              className="relative group"
               aria-label="Follow us on X"
             >
-              <svg
-                className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-colors"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
+              <div 
+                className="absolute -inset-[1px] rounded-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4)',
+                  backgroundSize: '300% 100%',
+                  animation: 'gradientShift 3s ease infinite',
+                }}
+              />
+              <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-[#0a0a0c]">
+                <svg
+                  className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </div>
             </a>
 
-            <div className="flex flex-1 items-center justify-center rounded-md bg-white/[0.02] border border-white/[0.04] px-2 py-1.5">
-              <Image
-                src="/images/solana-logo-white-horizontal.png"
-                alt="Solana"
-                width={56}
-                height={16}
-                className="h-3.5 w-auto opacity-60"
+            {/* Solana Badge */}
+            <div className="relative group flex-1">
+              <div 
+                className="absolute -inset-[1px] rounded-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4)',
+                  backgroundSize: '300% 100%',
+                  animation: 'gradientShift 3s ease infinite',
+                }}
               />
+              <div className="relative flex items-center justify-center rounded-lg bg-[#0a0a0c] px-3 py-2">
+                <Image
+                  src="/images/solana-logo-white-horizontal.png"
+                  alt="Solana"
+                  width={64}
+                  height={18}
+                  className="h-4 w-auto opacity-60 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
             </div>
           </div>
+
+          {/* CSS for gradient animation */}
+          <style jsx>{`
+            @keyframes gradientShift {
+              0%, 100% { background-position: 0% 50%; }
+              50% { background-position: 100% 50%; }
+            }
+          `}</style>
         </div>
       </motion.aside>
     </>
