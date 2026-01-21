@@ -3,7 +3,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import Sidebar from "./Sidebar"
 import ChatPane from "./ChatPane"
-import LoginPage from "./LoginPage"
 import { INITIAL_TEMPLATES, INITIAL_FOLDERS } from "./mockData"
 import { Menu } from "lucide-react"
 
@@ -74,7 +73,7 @@ export default function AIAssistantUI() {
   const [templates, setTemplates] = useState(INITIAL_TEMPLATES)
   const [folders, setFolders] = useState(INITIAL_FOLDERS)
   const [walletAddress, setWalletAddress] = useState(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(true) // Always authenticated - no login required
   const [startPrompt, setStartPrompt] = useState(null)
 
   const [query, setQuery] = useState("")
@@ -127,6 +126,13 @@ export default function AIAssistantUI() {
     }
   }, [startPrompt, selectedId])
 
+  // Auto-create a new chat on mount if none exists
+  useEffect(() => {
+    if (conversations.length === 0 && !selectedId) {
+      createNewChat()
+    }
+  }, [])
+
   const filtered = useMemo(() => {
     if (!query.trim()) return conversations
     const q = query.toLowerCase()
@@ -175,11 +181,6 @@ export default function AIAssistantUI() {
   }
 
   async function sendMessage(convId, content) {
-    if (!walletAddress) {
-      alert("Please connect your Phantom wallet to chat")
-      return
-    }
-
     if (!content.trim()) return
     const now = new Date().toISOString()
     const userMsg = { id: Math.random().toString(36).slice(2), role: "user", content, createdAt: now }
@@ -370,10 +371,6 @@ export default function AIAssistantUI() {
 
   const handleStartPrompt = (prompt) => {
     setStartPrompt(prompt)
-  }
-
-  if (!isAuthenticated) {
-    return <LoginPage onConnect={handleLoginSuccess} />
   }
 
   return (
