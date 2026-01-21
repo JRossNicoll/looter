@@ -5,11 +5,6 @@ import {
   PanelLeftOpen,
   Plus,
   Settings,
-  MessageSquare,
-  TrendingUp,
-  Shield,
-  Zap,
-  ChevronRight,
   Wallet,
   Copy,
   Check,
@@ -21,57 +16,16 @@ import Image from "next/image"
 import { useState } from "react"
 import HourlyGiveaway from "./HourlyGiveaway"
 
-const SAMPLE_PROMPTS = [
-  {
-    category: "DeFi Analysis",
-    icon: TrendingUp,
-    prompts: [
-      "Analyze top Solana tokens by volume",
-      "Find new memecoin opportunities",
-      "Compare DeFi protocols on Solana",
-    ],
-  },
-  {
-    category: "Smart Contracts",
-    icon: Shield,
-    prompts: ["Explain this contract address", "Check token contract security", "Analyze liquidity pools"],
-  },
-  {
-    category: "Market Intelligence",
-    icon: Zap,
-    prompts: ["Latest Solana market trends", "Whale wallet movements", "Token holder distribution"],
-  },
-]
-
 export default function Sidebar({
   open,
   onClose,
-  theme,
-  setTheme,
   createNewChat,
   sidebarCollapsed = false,
   setSidebarCollapsed = () => {},
   walletAddress = null,
   onWalletChange = () => {},
-  conversations = [],
-  selectedId = null,
-  onSelect = () => {},
-  onStartPrompt = () => {},
 }) {
-  const [expandedCategories, setExpandedCategories] = useState({
-    "DeFi Analysis": true,
-    "Smart Contracts": false,
-    "Market Intelligence": false,
-  })
-
   const [copiedWallet, setCopiedWallet] = useState(false)
-
-  const toggleCategory = (category) => {
-    setExpandedCategories((prev) => ({
-      ...prev,
-      [category]: !prev[category],
-    }))
-  }
 
   const handleCopyWallet = async () => {
     if (walletAddress) {
@@ -240,58 +194,28 @@ export default function Sidebar({
           </button>
         </div>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-3 py-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10">
-          {/* Prompt Categories */}
-          <div className="space-y-0.5">
-            {SAMPLE_PROMPTS.map((category) => (
-              <div key={category.category}>
-                <button
-                  onClick={() => toggleCategory(category.category)}
-                  className="flex w-full items-center gap-2.5 px-2 py-2 rounded-lg hover:bg-white/[0.04] transition-all group"
-                >
-                  <category.icon className="h-4 w-4 text-cyan-500" />
-                  <span className="text-[12px] font-semibold text-zinc-300">{category.category}</span>
-                  <ChevronRight
-                    className={cls(
-                      "h-3.5 w-3.5 ml-auto text-zinc-600 transition-transform duration-200",
-                      expandedCategories[category.category] ? "rotate-90" : "",
-                    )}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {expandedCategories[category.category] && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.15, ease: "easeOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="space-y-0.5 py-1 pl-6 pr-1">
-                        {category.prompts.map((prompt, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              createNewChat()
-                              setTimeout(() => {
-                                onStartPrompt?.(prompt)
-                              }, 100)
-                            }}
-                            className="flex w-full items-start rounded-md px-2.5 py-1.5 text-left text-[11px] text-zinc-500 hover:bg-white/[0.04] hover:text-zinc-300 transition-all leading-relaxed"
-                          >
-                            <span className="line-clamp-2">{prompt}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+        {/* Contract Address Section */}
+        <div className="px-3 pb-3">
+          <div className="rounded-lg bg-black/40 border border-white/[0.06] p-2.5">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] text-zinc-500 uppercase tracking-wider block mb-0.5">$DGEN</span>
+                <span className="text-[10px] font-mono text-zinc-400 truncate block">AANZSd...jpump</span>
               </div>
-            ))}
+              <a
+                href="https://pump.fun/coin/AANZSdeiUiZnaFfHMS5Xov5fP5F212Zg7dVVd29jpump"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 rounded-md bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 px-3 py-1.5 text-[10px] font-bold text-white uppercase tracking-wide transition-all active:scale-[0.98] shadow-lg shadow-emerald-500/20"
+              >
+                Buy
+              </a>
+            </div>
           </div>
         </div>
+
+        {/* Spacer */}
+        <div className="flex-1" />
 
         {/* Footer Section */}
         <div className="mt-auto border-t border-white/[0.04] px-3 py-3 space-y-3">

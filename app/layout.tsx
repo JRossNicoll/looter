@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   generator: "v0.app",
   icons: {
     icon: [
-      { url: "/favicon.png", sizes: "any" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/images/ghost-logo-3-eyes.png", sizes: "any" },
+      { url: "/images/ghost-logo-3-eyes.png", sizes: "192x192", type: "image/png" },
+      { url: "/images/ghost-logo-3-eyes.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: "/icon-192.png",
+    apple: "/images/ghost-logo-3-eyes.png",
   },
 }
 
